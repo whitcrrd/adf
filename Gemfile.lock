@@ -206,6 +206,7 @@ DEPENDENCIES
   less-rails
   omniauth-facebook
   rails (= 3.2.9)
+  rspec
   rspec-rails
   sass-rails (~> 3.2.3)
   sqlite3
