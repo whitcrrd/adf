@@ -5,6 +5,7 @@ Adf::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
   root to: "users#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
