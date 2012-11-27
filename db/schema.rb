@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127203354) do
+ActiveRecord::Schema.define(:version => 20121127222636) do
 
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20121127203354) do
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "image_url"
   end
 
 end
