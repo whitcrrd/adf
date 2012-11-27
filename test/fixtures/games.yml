@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  home_team_id: 1
+  away_team_id: 1
+  home_points: 1
+  away_points: 1
+
+two:
+  home_team_id: 1
+  away_team_id: 1
+  home_points: 1
+  away_points: 1
