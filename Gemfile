@@ -29,6 +29,7 @@ group :test, :development do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'
