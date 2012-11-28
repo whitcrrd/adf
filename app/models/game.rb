@@ -10,10 +10,12 @@ class Game < ActiveRecord::Base
       self.winner_id = self.home_team_id
       self.loser_id = self.away_team_id
       @home_team.name
-    else
+    elsif
       self.winner_id = self.away_team_id
       self.loser_id = self.home_team_id
       @away_team.name
+    else
+      "Tie Game"
     end
   end
   
