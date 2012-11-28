@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(:version => 20121128015847) do
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "professional_team_id"
+    t.string   "professional_team"
     t.string   "position"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "athletes_teams", :force => true do |t|
@@ -32,21 +32,14 @@ ActiveRecord::Schema.define(:version => 20121128015847) do
   create_table "games", :force => true do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
-    t.integer  "home_points"
-    t.integer  "away_points"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "professional_teams", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "teams", :force => true do |t|
     t.date     "date"
     t.integer  "user_id"
+    t.integer  "points"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
