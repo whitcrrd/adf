@@ -8,4 +8,8 @@ class Team < ActiveRecord::Base
   def athlete_ids=(athlete_ids)
     self.athletes = Athlete.find_all_by_id(athlete_ids)
   end
+  
+  def points
+    #calculate points from that day's box score
+  end
 end
