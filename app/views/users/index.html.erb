@@ -1,1 +1,22 @@
-<h1>Users Index Page</h1>
+<div class="container-fluid container">
+  <div class="row-fluid">
+    <div class="span6">
+      <h2>How to play</h2>
+      <% if current_user %>
+      <%=link_to 'Play!', new_user_team_path(current_user.id) %>
+      <% else %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      <% end %>
+    </div>
+    <div class="span6">
+      <h2>Leaderboard</h2>
+      <table class="table">
+      <% @users.each do |user|%>
+        <tr>
+          <td><%= user.name %></td>
+        </tr>
+        <%end%>
+      </table>
+    </div>
+  </div>
+</div>

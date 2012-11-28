@@ -4,7 +4,14 @@ Adf::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
   
-  root to: "users#index"
+  root :to => "users#index"
+
+  resources :users do
+    resources :teams
+  end
+
+  resources :games
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
