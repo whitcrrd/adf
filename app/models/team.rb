@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  attr_accessible :date, :user_id
+  attr_accessible :date, :user_id, :points
 
   has_many :athletes_teams
   has_many :athletes, :through => :athletes_teams
