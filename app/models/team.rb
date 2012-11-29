@@ -7,10 +7,11 @@ class Team < ActiveRecord::Base
   belongs_to :game
 
   def athlete_ids=(athlete_ids)
-    self.athletes = Athlete.find_all_by_id(athlete_ids)
+    self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
-  
+
   def points
     #calculate points from that day's box score
   end
+
 end
