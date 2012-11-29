@@ -2,4 +2,6 @@
 <%= current_user.id %><br>
 <%= current_user.name %>
 
-<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/" data-send="false" data-width="450" data-show-faces="true"></div>
+<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div>
+
+<%= link_to "Share on Facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&redirect_uri=http://localhost:3000/users/#{current_user.id}"%>
