@@ -22,7 +22,6 @@ Adf::Application.routes.draw do
     resources :athletes, :only => [:destroy]
   end
 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
