@@ -4,4 +4,5 @@ class AthletesController < ApplicationController
     @team.athletes.destroy(params[:id])
     redirect_to :back
   end
+
 end

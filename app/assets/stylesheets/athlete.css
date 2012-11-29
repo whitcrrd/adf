@@ -20,6 +20,15 @@ div.player_card div.name {
   font-size: 16px;
 }
 
+div.player_card div.stats {
+  font-weight: bold;
+  font-size: 12px;
+}
+
 div.delete_button {
-/*  margin-top: -100px;*/
+  float: left;
+/*  margin-top: -200px;*/
+  margin-top: -20px;
+  margin-left: 170px;
+/*  z-index: -50;*/
 }

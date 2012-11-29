@@ -213,6 +213,7 @@ DEPENDENCIES
   jquery-rails
   koala
   less-rails
+  nokogiri
   omniauth-facebook
   rails (= 3.2.9)
   rspec

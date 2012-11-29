@@ -10,12 +10,17 @@ Adf::Application.routes.draw do
     resources :teams
   end
 
-  resources :games
+  resources :users do
+    resources :games
+  end
+
+  resources :games do
+    resources :teams
+  end
 
   resources :teams , :only => [] do
     resources :athletes, :only => [:destroy]
   end
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128233741) do
+ActiveRecord::Schema.define(:version => 20121129035912) do
 
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121128233741) do
     t.string   "position"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "full_name"
   end
 
   create_table "athletes_teams", :force => true do |t|
@@ -38,6 +39,27 @@ ActiveRecord::Schema.define(:version => 20121128233741) do
 
   add_index "games", ["loser_id"], :name => "index_games_on_loser_id"
   add_index "games", ["winner_id"], :name => "index_games_on_winner_id"
+
+  create_table "season_averages", :force => true do |t|
+    t.integer  "games"
+    t.integer  "games_started"
+    t.float    "minutes"
+    t.float    "field_goals"
+    t.float    "three_pointers"
+    t.float    "free_throws"
+    t.float    "offensive_rebounds"
+    t.float    "defensive_rebounds"
+    t.float    "rebounds"
+    t.float    "assists"
+    t.float    "steals"
+    t.float    "blocks"
+    t.float    "turnovers"
+    t.float    "personal_fouls"
+    t.float    "points"
+    t.integer  "athlete_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "teams", :force => true do |t|
     t.date     "date"
