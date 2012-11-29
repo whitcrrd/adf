@@ -1,4 +1,4 @@
-<%= form_for [current_user,@team ||= Team.new ] do |f| %>
+<%= form_for [@team ||= Team.new ] do |f| %>
 
 Team Name: <%= f.text_field :name %>
 <select id = "position_list" xonchange="positionChange(this)">
@@ -23,7 +23,7 @@ Team Name: <%= f.text_field :name %>
         <td id="player_<%=athlete.id%>" class="player_text">
           <%#= athlete.last_name %>,
           <%#= athlete.first_name %>
-					<%= athlete.full_name %>
+          <%= athlete.full_name %>
         </td>
         <td class="player_text">
           <%= athlete.position %>

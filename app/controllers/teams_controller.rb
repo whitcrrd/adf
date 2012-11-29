@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
     @team.name = params[:team][:name]
     # @team.game_id = @game.id
     if @team.save
-      redirect_to edit_user_team_path(current_user, @team)
+      redirect_to edit_team_path(@team)
       # redirect_to game_team_path(@game.id, @team.id)
     else
       render :back
@@ -45,7 +45,7 @@ class TeamsController < ApplicationController
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
     @team.name = params[:team][:name]
     if @team.save
-      redirect_to edit_user_team_path(current_user, @team)
+      redirect_to edit_team_path(@team)
     else
       render :back
     end
