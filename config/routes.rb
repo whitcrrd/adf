@@ -6,19 +6,11 @@ Adf::Application.routes.draw do
 
   root :to => "users#index"
 
-  resources :users do
-    resources :teams
-  end
+  resources :users
 
-  resources :users do
-    resources :games
-  end
+  resources :games
 
-  resources :games do
-    resources :teams
-  end
-
-  resources :teams , :only => [] do
+  resources :teams do
     resources :athletes, :only => [:destroy]
   end
 

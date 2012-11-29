@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-
+  before_filter :authorize, :only => [:edit, :update]
   def index
     @games = Game.all
   end
@@ -23,5 +23,23 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @teams = @game.teams
+  end
+
+  def edit
+    @game = Game.find params[:id]
+    if @game.full?
+      render :notice => "game is full"
+    else
+      @new_team = @game.teams.build
+    end
+  end
+
+  def update
+    @game = Game.find params[:id]
+    if @game.update_attributes params[:game]
+      redirect_to @game
+    else
+      render :edit
+    end
   end
 end

@@ -3,7 +3,7 @@
     <div class="span6">
       <h2>How to play</h2>
       <% if current_user %>
-      <%=link_to 'Play!', new_user_team_path(current_user.id) %>
+      <%=link_to 'Play!', new_team_path(current_user.id) %>
       <% else %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
       <% end %>

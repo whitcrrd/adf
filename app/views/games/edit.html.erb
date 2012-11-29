@@ -1,0 +1,14 @@
+<% unless @game.full? %>
+  <%= form_for @game do |f| %>
+    <%= @game.teams.first.name %>
+    vs
+    <%= f.fields_for :teams, @new_team do |t| %>
+      <%= t.text_field :name %>
+      <%= t.hidden_field :user_id, :value => current_user.id %>
+    <%end%>
+
+    <%= f.submit "Join Game" %>
+  <%end%>
+<%end%>
+
+

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def authorize
+    redirect_to root_path, :notice => "please login first" if current_user.blank?
+  end
+
   private
 
   def current_user

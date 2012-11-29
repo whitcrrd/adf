@@ -1,9 +1,11 @@
 class Game < ActiveRecord::Base
-  attr_accessible :winner_id, :loser_id
+  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes
 
   has_many :teams
+  accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
 
   # Add @game.game_winner to game show view to display the winner of the game
+  MAX_TEAM_COUNT = 2
   def game_winner
     find_teams
     if @home_team.points > @away_team.points
@@ -17,6 +19,10 @@ class Game < ActiveRecord::Base
     else
       "Tie Game"
     end
+  end
+
+  def full?
+    self.teams.count == MAX_TEAM_COUNT
   end
 
   def find_teams
