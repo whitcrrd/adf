@@ -6,6 +6,7 @@ class Team < ActiveRecord::Base
   belongs_to :user
 
   def athlete_ids=(athlete_ids)
-    self.athletes = Athlete.find_all_by_id(athlete_ids)
+    self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
+
 end

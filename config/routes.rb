@@ -1,9 +1,9 @@
 Adf::Application.routes.draw do
-  
+
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
-  
+
   root :to => "users#index"
 
   resources :users do
@@ -11,6 +11,10 @@ Adf::Application.routes.draw do
   end
 
   resources :games
+
+  resources :teams , :only => [] do
+    resources :athletes, :only => [:destroy]
+  end
 
 
   # The priority is based upon order of creation:

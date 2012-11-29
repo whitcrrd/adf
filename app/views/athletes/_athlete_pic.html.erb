@@ -1,0 +1,10 @@
+
+<div href="#" class="player_card">
+  <img src="http://i.cdn.turner.com/nba/nba/media/act_arron_afflalo.jpg">
+  <div class="name"><%= athlete.first_name %> <%= athlete.last_name %></div>
+  <div class="stats">STATS</div>
+  <div class='delete_button'>
+  <%= link_to '', team_athlete_path(@team, athlete), class: 'btn-mini btn-danger icon-remove', method: :delete, data: {confirm: 'Are you sure?'}%>
+
+  </div>
+</div>
