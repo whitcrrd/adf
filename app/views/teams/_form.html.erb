@@ -1,4 +1,6 @@
-<%= form_for [current_user, @team] do |f| %>
+<%= form_for [current_user, @team ||= Team.new ] do |f| %>
+
+Team Name: <%= f.text_field :name %>
 <select id = "position_list" xonchange="positionChange(this)">
   <option value="PG">Point Guard</option>
   <option value="C">Center</option>
@@ -6,8 +8,11 @@
   <option value="SF">Small Forward</option>
   <option value="SG">Shooting Guard</option>
 </select>
-<div class="player_list">
+
+  <div class="player_list">
+
     <table class = "player_table">
+
       <% @athletes.each do |athlete| %>
       <tr class="position_<%=athlete.position%>">
         <td>
@@ -29,5 +34,7 @@
       <% end %>
     </table>
   </div>
-  <%= f.submit "Update Roster"%>
+  <br>
+  <%= hidden_field_tag 'game_id', '4' %>
+  <%= f.submit %>
 <% end %>

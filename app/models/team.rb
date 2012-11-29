@@ -19,6 +19,6 @@ class Team < ActiveRecord::Base
     @total_points
   end
 
-  helper_method :total_fantasy_points
+  # helper_method :total_fantasy_points
 
 end
