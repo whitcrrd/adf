@@ -10,8 +10,15 @@ class Team < ActiveRecord::Base
     self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
 
-  def points
-    #calculate points from that day's box score
+  def total_fantasy_points
+    @team = Team.find(params[:id])
+    @total_points = 0
+    @team.athletes.each do |athlete|
+      @total_points = @total_points + athlete.fantasy_points
+    end
+    @total_points
   end
+
+  helper_method :total_fantasy_points
 
 end
