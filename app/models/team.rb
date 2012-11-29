@@ -6,6 +6,8 @@ class Team < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 
+  validate :must_have_5_athletes
+
   def athlete_ids=(athlete_ids)
     self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
@@ -17,6 +19,14 @@ class Team < ActiveRecord::Base
       @total_points = @total_points + athlete.fantasy_points
     end
     @total_points
+  end
+
+
+  def must_have_5_athletes
+    
+    if self.athletes.length != 5
+      errors.add(:team, "must have 5 athletes")
+    end
   end
 
   # helper_method :total_fantasy_points

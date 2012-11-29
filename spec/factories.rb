@@ -32,6 +32,8 @@ teams = ["Atlanta Hawks",
 "Utah Jazz",
 "Washington Wizards"]
 
+
+
 FactoryGirl.define do
   factory :athlete do |athlete|
     athlete.first_name  {Faker::Name.first_name}
@@ -39,4 +41,20 @@ FactoryGirl.define do
     athlete.professional_team {teams.sample}
     athlete.position {positions.sample}
   end
+  factory :team do |team|
+    team.date {Date.current}
+    team.sequence(:user_id) {|n| "#{n}"}
+    team.points {rand(0..100)}
+    team.name {Faker::Name.first_name}
+    team.sequence(:game_id) {|n| "#{n}"}
+  end
 end
+
+
+
+
+
+
+
+
+
