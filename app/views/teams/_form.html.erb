@@ -1,6 +1,13 @@
 <%= form_for [current_user, @team] do |f| %>
+<select id = "position_list" xonchange="positionChange(this)">
+  <option value="PG">Point Guard</option>
+  <option value="C">Center</option>
+  <option value="PF">Power Forward</option>
+  <option value="SF">Small Forward</option>
+  <option value="SG">Shooting Guard</option>
+</select>
 <div class="player_list">
-    <table>
+    <table class = "player_table">
       <% @athletes.each do |athlete| %>
       <tr class="position_<%=athlete.position%>">
         <td>
