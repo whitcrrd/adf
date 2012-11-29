@@ -21,20 +21,21 @@ Team Name: <%= f.text_field :name %>
           <% end %>
         </td>
         <td id="player_<%=athlete.id%>" class="player_text">
-          <%= athlete.last_name %>,
-          <%= athlete.first_name %>
+          <%#= athlete.last_name %>,
+          <%#= athlete.first_name %>
+					<%= athlete.full_name %>
         </td>
         <td class="player_text">
           <%= athlete.position %>
         </td>
         <td class="player_text">
-          <%= athlete.professional_team %>
+          <%= athlete.professional_team.capitalize %>
         </td>
       </tr>
       <% end %>
     </table>
   </div>
   <br>
-  <%= hidden_field_tag 'game_id', '4' %>
+  <%#= hidden_field_tag 'game_id', '4' %>
   <%= f.submit %>
 <% end %>

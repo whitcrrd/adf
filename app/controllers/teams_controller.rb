@@ -10,19 +10,19 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @game = Game.find(params[:game_id])
-    if @game == nil
-      @game = Game.new
-      @game.save
-    end
+    # @game = Game.find(params[:game_id])
+    # if @game == nil
+    #   @game = Game.new
+    #   @game.save
+    # end
     @team = current_user.teams.create
     @team.date = Date.current
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
     @team.name = params[:team][:name]
-    @team.game_id = @game.id
+    # @team.game_id = @game.id
     if @team.save
-      # redirect_to edit_user_team_path(current_user, @team)
-      redirect_to game_team_path(@game.id, @team.id)
+      redirect_to edit_user_team_path(current_user, @team)
+      # redirect_to game_team_path(@game.id, @team.id)
     else
       render :back
     end
