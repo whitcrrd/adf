@@ -2,6 +2,7 @@
   <% @teams.each do |team| %>
     <p>
     DATE: <%= team.date.to_s %><br>
+    <div class="team-name"><%= team.name %></div>
     <% team.athletes.each do |athlete| %>
       <%= athlete.first_name %> <%= athlete.last_name %><br>
     <% end %>

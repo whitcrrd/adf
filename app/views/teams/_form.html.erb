@@ -1,5 +1,7 @@
-<%= form_for [current_user, @team] do |f| %>
+<%= form_for [current_user, @team ||= Team.new ] do |f| %>
+Team Name: <%= f.text_field :name %>
 <div class="player_list">
+
     <table>
       <% @athletes.each do |athlete| %>
       <tr class="position_<%=athlete.position%>">
@@ -22,5 +24,7 @@
       <% end %>
     </table>
   </div>
-  <%= f.submit "Update Roster"%>
+  <br>
+  <%= hidden_field_tag 'game_id',  %>
+  <%= f.submit %>
 <% end %>
