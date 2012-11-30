@@ -11,6 +11,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game])
+
     if @game.save
       # redirect_to @game
       # @game.team.create
@@ -27,6 +28,8 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find params[:id]
+    @athletes = Athlete.all
+
     if @game.full?
       render :notice => "game is full"
     else
@@ -36,7 +39,13 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find params[:id]
+
     if @game.update_attributes params[:game]
+      @team = @game.teams.last
+      if @team
+        @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
+      end
+
       redirect_to @game
     else
       render :edit

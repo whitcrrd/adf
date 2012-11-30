@@ -2,12 +2,12 @@
   <% @teams.each do |team| %>
     <p>
     DATE: <%= team.date.to_s %><br>
-    <div class="team-name"><%= team.name %></div>
+    <div class="team-name"><%= link_to team.name, game_path(team.game) %></div>
     <% team.athletes.each do |athlete| %>
       <%#= athlete.first_name %> <%#= athlete.last_name %>
-			<%= athlete.full_name %><br>
+      <%= athlete.full_name %><br>
     <% end %>
-    <%= link_to 'Edit', edit_user_team_path(current_user.id, team.id), class: 'btn btn-mini btn-primary' %>
+    <%= link_to 'Edit', edit_team_path(team.id), class: 'btn btn-mini btn-primary' %>
     <div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/<%=current_user.id%>/teams/<%=team.id%>" data-send="false" data-width="450" data-show-faces="true"></div>
     </p>
   <% end %>
