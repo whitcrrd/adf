@@ -6,26 +6,23 @@ class Team < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 
-  validate :must_have_5_athletes
+  validates :athletes, :length => {:is => 5}
+
+  validate :must_have_5_unique_positions
 
   def athlete_ids=(athlete_ids)
     self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
 
   def total_fantasy_points
-    @team = Team.find(params[:id])
-    @total_points = 0
-    @team.athletes.each do |athlete|
-      @total_points = @total_points + athlete.fantasy_points
-    end
-    @total_points
+    self.athletes.sum(:fantasy_points)
   end
 
-
-  def must_have_5_athletes
-    
-    if self.athletes.length != 5
-      errors.add(:team, "must have 5 athletes")
+private
+  def must_have_5_unique_positions
+    positions = self.athletes.map(&:position)
+    if positions.uniq.length != positions.length
+      errors.add(:team, "must have a Point Guard, Center, Shooting Guard, Power Forward, and Small Forward")
     end
   end
 

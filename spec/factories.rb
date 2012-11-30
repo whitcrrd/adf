@@ -41,6 +41,7 @@ FactoryGirl.define do
     athlete.professional_team {teams.sample}
     athlete.position {positions.sample}
   end
+
   factory :team do |team|
     team.date {Date.current}
     team.sequence(:user_id) {|n| "#{n}"}

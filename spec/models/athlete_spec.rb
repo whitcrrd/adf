@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Athlete do
-  it "responds to teams" do
-    a = Athlete.new
-    a.should respond_to(:teams)
-  end
+  it { should have_many :athletes_teams }
+  it { should have_many(:teams).through(:athletes_teams) }
+  it { should have_one(:season_average)}
+
 end
