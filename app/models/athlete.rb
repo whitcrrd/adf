@@ -8,21 +8,21 @@ class Athlete < ActiveRecord::Base
   has_many :athletes_teams
   has_many :teams, :through => :athletes_teams
 
-  has_one :season_average  
+  has_one :season_average
   has_one :season_average
   has_one :current_stat
 
 
   # def points
-  #   self.athletes.current_stat.points
+  #   self.current_stat.points ################# why is it self.athletes when you're in athlete model??!?!?!
   # end
   #
   # def rebound_points
-  #   self.athletes.livestats.rebounds
+  #   self.current_stat.rebounds
   # end
   #
   # def assist_points
-  #   self.athletes.livestats.assists * 1.5
+  #   self.current_stat.assists * 1.5
   # end
   #
   # def fantasy_points
