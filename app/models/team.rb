@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :athletes
 
   after_create :create_game_if_not_present!
-  validates :athletes, :length => {:is => 5}
+  validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
   validate :must_have_5_unique_positions
 
 
@@ -22,7 +22,7 @@ class Team < ActiveRecord::Base
   end
 
   private
-  
+
   def create_game_if_not_present!
     self.build_game unless self.game.present?
     self.save
