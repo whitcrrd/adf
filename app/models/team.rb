@@ -18,7 +18,8 @@ class Team < ActiveRecord::Base
   end
 
   def total_fantasy_points
-    self.athletes.sum(:fantasy_points)
+    # self.athletes.sum(:fantasy_points)
+    total = self.athletes.map(&:fantasy_points)
   end
 
   private
