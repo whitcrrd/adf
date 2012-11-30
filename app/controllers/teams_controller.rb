@@ -46,7 +46,7 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to edit_team_path(@team)
     else
-      render :back
+      redirect_to :back
     end
   end
 

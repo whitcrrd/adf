@@ -29,5 +29,9 @@ class Athlete < ActiveRecord::Base
   has_one :season_average
   has_one :current_stat
 
+  def url_name
+    return 'nene' if self.full_name =~ /^Nen/
+    self.full_name.split(' ').join('_').gsub(/[\.\']/, '').gsub('_Jr', '').downcase
+  end
 
 end

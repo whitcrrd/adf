@@ -18,7 +18,7 @@
           <% end %>
         </td>
         <td id="player_<%=athlete.id%>" class="player_text">
-          <%#= athlete.last_name %>,
+          <%#= athlete.last_name %>
           <%#= athlete.first_name %>
           <%= athlete.full_name %>
         </td>
@@ -26,7 +26,7 @@
           <%= athlete.position %>
         </td>
         <td class="player_text">
-          <%= athlete.professional_team.capitalize %>
+          <%= athlete.professional_team.short_name.upcase %>
         </td>
       </tr>
       <% end %>
