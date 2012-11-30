@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129035912) do
+ActiveRecord::Schema.define(:version => 20121129235300) do
 
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "professional_team"
     t.string   "position"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "full_name"
+    t.integer  "professional_team_id"
   end
 
   create_table "athletes_teams", :force => true do |t|
@@ -28,6 +29,25 @@ ActiveRecord::Schema.define(:version => 20121129035912) do
     t.integer  "athlete_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "current_stats", :force => true do |t|
+    t.integer  "minutes"
+    t.string   "field_goals"
+    t.string   "three_pointers"
+    t.string   "free_throws"
+    t.integer  "offensive_rebounds"
+    t.integer  "defensive_rebounds"
+    t.integer  "rebounds"
+    t.integer  "assists"
+    t.integer  "steals"
+    t.integer  "blocks"
+    t.integer  "personal_fouls"
+    t.string   "plus_minus"
+    t.integer  "points"
+    t.integer  "athlete_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "games", :force => true do |t|
@@ -39,6 +59,15 @@ ActiveRecord::Schema.define(:version => 20121129035912) do
 
   add_index "games", ["loser_id"], :name => "index_games_on_loser_id"
   add_index "games", ["winner_id"], :name => "index_games_on_winner_id"
+
+  create_table "professional_teams", :force => true do |t|
+    t.string   "name"
+    t.boolean  "playing_today",     :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.string   "short_name"
+    t.string   "espn_box_score_id"
+  end
 
   create_table "season_averages", :force => true do |t|
     t.integer  "games"
