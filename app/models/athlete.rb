@@ -8,6 +8,11 @@ class Athlete < ActiveRecord::Base
   has_many :athletes_teams
   has_many :teams, :through => :athletes_teams
 
+  has_one :season_average  
+  has_one :season_average
+  has_one :current_stat
+
+
   # def points
   #   self.athletes.livestats.points
   # end
@@ -26,8 +31,8 @@ class Athlete < ActiveRecord::Base
 
   # helper_method :fantasy_points
 
-  has_one :season_average
-  has_one :current_stat
+
+
 
 
 end

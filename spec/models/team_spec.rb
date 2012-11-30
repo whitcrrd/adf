@@ -1,35 +1,43 @@
 require 'spec_helper'
 
 describe Team do
-  before (:each) do
-    @t = Team.new
-  end
+  let(:team) {FactoryGirl.build(:team)}
+  it { should have_many :athletes_teams }
+  it { should have_many(:athletes).through(:athletes_teams) }
+  it { should belong_to :user }
+  it { should belong_to :game }
 
-	it "should respond to user" do 
-		@t.should respond_to(:user)
-	end
+  describe "#valid?" do
+   
+    context "with invalid attributes" do
+      it "should be invalid with 4 athletes" do
+        4.times do
+          team.athletes << FactoryGirl.build(:athlete)
+        end
+        team.should_not be_valid
+      end
 
-	it "should respond to athletes" do
-		@t.should respond_to(:athletes)
-	end
+      it "should be invalid with 6 athletes" do
+        6.times do
+          team.athletes << FactoryGirl.build(:athlete)
+        end
 
-  it "should have only 5 athletes" do
-    4.times do
-      @t.athletes << FactoryGirl.create(:athlete)
+        team.should_not be_valid
+      end
+
+      it "should be invalid with multiple positions of the same" do
+        5.times do
+          a = FactoryGirl.build(:athlete)
+          a.position = "C"
+          team.athletes << a
+        end
+        team.should_not be_valid
+      end
     end
 
-    @t.should_not be_valid
-    @t.should have(1).errors_on(:team)
-
+    
   end
 
-  it "should have only 5 athletes" do
-    6.times do
-      @t.athletes << FactoryGirl.create(:athlete)
-    end
-
-    @t.should_not be_valid
-    @t.should have(1).errors_on(:team)
-  end
 
 end
+

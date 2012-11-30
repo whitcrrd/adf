@@ -9,8 +9,8 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :athletes
 
   after_create :create_game_if_not_present!
-
-  validate :must_have_5_athletes
+  validates :athletes, :length => {:is => 5}
+  validate :must_have_5_unique_positions
 
 
   def athlete_ids=(athlete_ids)
@@ -22,15 +22,16 @@ class Team < ActiveRecord::Base
   end
 
   private
+  
   def create_game_if_not_present!
     self.build_game unless self.game.present?
     self.save
   end
 
-  def must_have_5_athletes
-    
-    if self.athletes.length != 5
-      errors.add(:team, "must have 5 athletes")
+  def must_have_5_unique_positions
+    positions = self.athletes.map(&:position)
+    if positions.uniq.length != positions.length
+      errors.add(:team, "must have a Point Guard, Center, Shooting Guard, Power Forward, and Small Forward")
     end
   end
 
