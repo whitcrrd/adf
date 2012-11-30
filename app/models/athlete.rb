@@ -14,7 +14,7 @@ class Athlete < ActiveRecord::Base
 
 
   # def points
-  #   self.athletes.livestats.points
+  #   self.athletes.current_stat.points
   # end
   #
   # def rebound_points
