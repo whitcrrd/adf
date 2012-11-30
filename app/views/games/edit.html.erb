@@ -1,13 +1,15 @@
 <% unless @game.full? %>
-  <%= form_for @game do |f| %>
+  <%= form_for @game do |game_form| %>
     <%= @game.teams.first.name %>
     vs
-    <%= f.fields_for :teams, @new_team do |t| %>
-      <%= t.text_field :name %>
-      <%= t.hidden_field :user_id, :value => current_user.id %>
+    <%= game_form.fields_for :teams, @new_team do |f| %>
+      <%= f.text_field :name %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <%= render 'teams/form_team', :f => f %>
     <%end%>
 
-    <%= f.submit "Join Game" %>
+    <%= game_form.submit "Join Game" %>
   <%end%>
 <%end%>
 

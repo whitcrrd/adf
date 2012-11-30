@@ -22,7 +22,7 @@ class Game < ActiveRecord::Base
   end
 
   def full?
-    self.teams.count == MAX_TEAM_COUNT
+    self.teams.count >= MAX_TEAM_COUNT
   end
 
   def find_teams
