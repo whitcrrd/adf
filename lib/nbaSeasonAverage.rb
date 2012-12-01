@@ -21,6 +21,7 @@ module NbaSeasonAverage
       ath_full_name = these_stats.delete(:full_name)
       ath_position = these_stats.delete(:position)
       athlete = team_object.athletes.find_or_create_by_full_name(:full_name => ath_full_name, :position => ath_position)
+      athlete.update_attributes(:professional_team_id => team_object.id) if athlete.professional_team_id == nil
       season_average = athlete.season_average || SeasonAverage.new(:athlete => athlete)
       season_average.update_attributes(these_stats)
     end

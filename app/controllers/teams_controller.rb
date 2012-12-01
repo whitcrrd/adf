@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     #   @game.save
     # end
     @team = current_user.teams.create
-    @team.date = Date.current
+    @team.date = Date.today
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
     @team.name = params[:team][:name]
     # @team.game_id = @game.id
