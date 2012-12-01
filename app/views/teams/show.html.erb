@@ -1,7 +1,22 @@
 <h3>Show Team</h3>
 
-<%%>
+
 <%= @team.name %>
 <%= @game.id %>
 
 <%= link_to 'Game', game_path(@game.id) %>
+
+<div class="container-fluid container">
+  <div class="row-fluid">
+    <div class="span8">
+      <h3><%= @team.name %></h3>
+      <table>
+      <tr>
+      <% @team.athletes.each do |athlete| %>
+        <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+      <% end %>
+      </tr>
+      </table>
+    </div>
+  </div>
+</div>

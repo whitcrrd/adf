@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
 
+  before_filter :authorize, :only => [:show]
   def index
     @teams = current_user.teams
   end
@@ -31,6 +32,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @game = @team.game
   end
 
 
