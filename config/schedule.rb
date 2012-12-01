@@ -1,30 +1,20 @@
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
-
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
 # Learn more: http://github.com/javan/whenever
 
 set :output, "#{path}/log/cron.log"
+set :environment, "development"
 
 # initialize game with reset of professional_teams and current_stats
-every 1.day, :at '4:00 am' do
+
+# every 1.day, :at => "3:00 am" do
+#   rake "db:reset_nba_schedule"
+# end
+
+# every 1.day, :at => "4:00 am" do
+#   rake "db:set_play_today"
+# end
+
+every 10.minutes do
+  # command "echo hello"
+  rake "db:update_live_players"
 end
 
-# start
-every 15.minutes, :after => '11:30 am' do
-end
