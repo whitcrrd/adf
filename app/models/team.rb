@@ -9,8 +9,8 @@ class Team < ActiveRecord::Base
   accepts_nested_attributes_for :athletes
 
   after_create :create_game_if_not_present!
-  validates :athletes, :length => {:is => 5}
-  validate :must_have_5_unique_positions
+  # validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
+  # validate :must_have_5_unique_positions
 
 
   def athlete_ids=(athlete_ids)
@@ -18,11 +18,22 @@ class Team < ActiveRecord::Base
   end
 
   def total_fantasy_points
-    self.athletes.sum(:fantasy_points)
+    total_points = 0
+    self.athletes.each do |athlete|
+      total_points += athlete.fantasy_points
+    end
+    total_points
+  end
+
+  def calculate_fantasy_points
+    self.athletes.each do |athlete|
+      athlete.find_stats(self.id)
+    end
+    total_fantasy_points
   end
 
   private
-  
+
   def create_game_if_not_present!
     self.build_game unless self.game.present?
     self.save

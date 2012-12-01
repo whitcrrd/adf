@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20121130233230) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "turnovers"
+    t.date     "game_date"
   end
 
   create_table "games", :force => true do |t|

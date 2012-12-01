@@ -6,7 +6,7 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,6 +31,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'faker'
+  gem 'quiet_assets'
 end
 
 gem 'jquery-rails'
