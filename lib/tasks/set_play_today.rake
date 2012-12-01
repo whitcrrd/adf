@@ -1,8 +1,8 @@
-require 'NbaLiveStat'
+require 'DailySetup'
 
 namespace :db do
   desc "change the teams playing today to true"
   task :set_play_today => :environment do
-    NbaLiveStat.set_teams_playing_today
+    DailySetup.set_daily_schedule
   end
 end
