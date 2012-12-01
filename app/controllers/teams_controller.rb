@@ -30,6 +30,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @game = @team.game
   end
 
 

@@ -1,10 +1,32 @@
 <h3>Game Show Page</h3>
 <!-- display both users and their teams -->
 
-<% @teams.each do |team| %>
+<!-- <% @teams.each do |team| %>
   <%= team.name %>
+<% end %> -->
 
+<% if @teams.length <= 1 %>
+  <%= link_to @teams.first.name, team_path(@teams.first) %>
+  <% @teams.athletes.each do |athlete| %>
+    <%= athlete.full_name %>
+  <% end %>
+<% elsif @teams.length >1 %>
+  <%= link_to @teams.first.name, team_path(@teams.first) %>
+  <% @teams.first.athletes.each do |athlete| %>
+    <%= athlete.full_name %>
+  <% end %>
+  vs
+  PG
+  C
+  SG
+  SF
+  PF
+  <%= link_to @teams.last.name, team_path(@teams.last) %>
+  <% @teams.last.athletes.each do |athlete| %>
+    <%= athlete.full_name %>
+  <% end %>
 <% end %>
+
 <% unless @game.full? %>
   <%= link_to 'Join This Game', edit_game_path(@game) %>
 <% end %>

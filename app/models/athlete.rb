@@ -41,7 +41,6 @@ class Athlete < ActiveRecord::Base
     points + rebound_points + assist_points
   end
 
-  private
   def url_name
     return 'nene' if self.full_name =~ /^Nen/
     self.full_name.split(' ').join('_').gsub(/[\.\']/, '').gsub('_Jr', '').downcase
