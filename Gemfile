@@ -38,6 +38,8 @@ gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'nokogiri'
+gem 'whenever', require: false
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
