@@ -22,7 +22,7 @@ module NbaLiveStat
   end
 
   def self.get_teams_playing_and_call_stats
-    now = Time.now
+    now = Time.now.utc + Time.zone_offset('EST')
     now_hour = now.strftime("%H").to_i
     now_min = now.strftime("%M").to_i/60.0
     now_num = now_hour + now_min
@@ -48,10 +48,9 @@ module NbaLiveStat
       these_stats = stats_from_row(row)
       ath_full_name = these_stats.delete(:full_name)
       athlete = Athlete.find_or_create_by_full_name(:full_name => ath_full_name)
-      date_today = Date.current
+      date_today = Date.today
       date_today -= 1 if (Time.now.strftime("%H").to_i) < 12
-      current_stat = athlete.current_stats.find_by_game_date(:game_date => date_today) || athlete.current_stats.build(:game_date => date_today)
-      # current_stat = athlete.current_stat || CurrentStat.new(:athlete => athlete)
+      current_stat = athlete.current_stats.find_by_game_date(date_today) || athlete.current_stats.build(:game_date => date_today)
       current_stat.update_attributes(these_stats)
     end
   end
