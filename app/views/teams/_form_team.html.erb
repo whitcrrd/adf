@@ -26,7 +26,9 @@
           <%= athlete.position %>
         </td>
         <td class="player_text">
-          <%= athlete.professional_team.short_name.upcase %>
+          <% unless athlete.professional_team == nil %>
+            <%= athlete.professional_team.short_name.upcase %>
+          <% end%>
         </td>
       </tr>
       <% end %>
