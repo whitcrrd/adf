@@ -1,27 +1,26 @@
 <div class="background">
 
-<div class="container-fluid container">
-  <div class="row-fluid">
-    <div class="span6">
-      <h2>How to play</h2>
-      <% if current_user %>
-      <%=link_to 'Play!', new_team_path(current_user) %>
-      <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-      <% end %>
-    </div>
-    <div class="span6">
-      <h2>Leaderboard</h2>
-      <table class="table">
-      <% @users.each do |user|%>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
-        <%end%>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/" data-send="false" data-width="450" data-show-faces="true"></div>
+	<div class="container-fluid container">
+	  <div class="row-fluid">
+	    <div class="span6">
+	      <h2>How to play</h2>
+	      <% if current_user %>
+	      <%=link_to 'Play!', new_team_path(current_user) %>
+	      <% else %>
+	      <%#= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+	      <% end %>
+	    </div>
+	    <div class="span6">
+	      <h2>Leaderboard</h2>
+	      <table class="table">
+	      <% @users.each do |user|%>
+	        <tr>
+	          <td><%= user.name %></td>
+	        </tr>
+	        <%end%>
+	      </table>
+	    </div>
+	  </div>
+		<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/" data-send="false" data-width="450" data-show-faces="true"></div>
+	</div>
 </div>

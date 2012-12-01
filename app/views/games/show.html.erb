@@ -7,7 +7,7 @@
 
 <% if @teams.length <= 1 %>
   <%= link_to @teams.first.name, team_path(@teams.first) %>
-  <% @teams.athletes.each do |athlete| %>
+  <% @teams.first.athletes.each do |athlete| %>
     <%= athlete.full_name %>
   <% end %>
 <% elsif @teams.length >1 %>
