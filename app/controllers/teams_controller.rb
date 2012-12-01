@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
 
+  before_filter :authorize, :only => [:show]
   def index
     @teams = current_user.teams
   end
