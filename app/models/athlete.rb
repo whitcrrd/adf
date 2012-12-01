@@ -13,22 +13,27 @@ class Athlete < ActiveRecord::Base
   has_one :season_average
 
 
-  def find_stats
-    @stat = self.current_stats.find_by_game_date("11/29/2012")
+
+
+  def find_stats(team_id)
+    @team_id = team_id
+    team = Team.find(team_id)
+    # @stat = self.current_stats.find_by_game_date(self.teams.find_by_.date)
+    @stat = self.current_stats.find_by_game_date(team.date)
   end
 
   def points
-    find_stats
+    find_stats(@team_id)
     @stat.points
   end
 
   def rebound_points
-     find_stats
+     find_stats(@team_id)
      @stat.rebounds
   end
 
   def assist_points
-     find_stats
+     find_stats(@team_id)
      @stat.assists
   end
 
@@ -36,14 +41,11 @@ class Athlete < ActiveRecord::Base
     points + rebound_points + assist_points
   end
 
-
-
-
-
-
+  private
   def url_name
     return 'nene' if self.full_name =~ /^Nen/
     self.full_name.split(' ').join('_').gsub(/[\.\']/, '').gsub('_Jr', '').downcase
   end
+
 
 end
