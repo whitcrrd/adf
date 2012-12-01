@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130230648) do
+ActiveRecord::Schema.define(:version => 20121130233230) do
 
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20121130230648) do
     t.datetime "updated_at",                           :null => false
     t.string   "short_name"
     t.string   "espn_box_score_id"
+    t.float    "game_time"
   end
 
   create_table "season_averages", :force => true do |t|

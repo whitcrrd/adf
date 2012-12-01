@@ -10,7 +10,7 @@ class Athlete < ActiveRecord::Base
   has_many :current_stats
 
   has_one :season_average
-  has_one :season_average
+  has_many :current_stats
 
 
 
