@@ -23,18 +23,18 @@ class Athlete < ActiveRecord::Base
   end
 
   def points
-    find_stats(@team_id)
+    return 0 unless find_stats(@team_id)
     @stat.points
   end
 
   def rebound_points
-     find_stats(@team_id)
-     @stat.rebounds
+    return 0 unless find_stats(@team_id)
+    @stat.rebounds
   end
 
   def assist_points
-     find_stats(@team_id)
-     @stat.assists
+    return 0 unless find_stats(@team_id)
+    @stat.assists
   end
 
   def fantasy_points
