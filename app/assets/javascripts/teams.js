@@ -9,12 +9,16 @@ $(document).ready( function() {
   // $('.position_SF').hide();
   // $('.position_PF').hide();
   $('#position_list').on('change', function(){
-    console.log(event)
-    $('.position_PG').hide();
-    $('.position_C').hide();
-    $('.position_SG').hide();
-    $('.position_SF').hide();
-    $('.position_PF').hide();
-    $('.position_' + event.target.value).show();
+    if (event.target.value === "ALL") {
+      $('[class^=position_]').show();
+    } else {
+      console.log(event)
+      $('.position_PG').hide();
+      $('.position_C').hide();
+      $('.position_SG').hide();
+      $('.position_SF').hide();
+      $('.position_PF').hide();
+      $('.position_' + event.target.value).show();
+    }
   });
 });
