@@ -7,30 +7,43 @@
   <option value="C">Center</option>
 </select>
 
-  <div class="player_list">
+<!-- start of individual drop down menus -->
+<!-- <% ['PG','SG','SF','PF','C'].each_with_index do |pos, num| %>
+  <select xonchange="positionChange(this)">
+    <option value="player">--- <%= pos %> ---</option>
+    <% @ath_by_pos[num].each do |athlete| %>
+      <option value="player"><%= athlete.full_name %></option>
+    <% end %>
+  </select>
+<% end %> -->
+<!-- end of individual drop down menus -->
 
-    <table class = "player_table">
+<div class="player_list">
 
-      <% @athletes.each do |athlete| %>
-      <tr class="position_<%=athlete.position%>">
-        <td>
-          <%= fields_for "athlete_ids[]", athlete do |athlete_fields| %>
-            <%= athlete_fields.check_box [], { :checked => false }, athlete.id, nil %>
-          <% end %>
-        </td>
-        <td id="player_<%=athlete.id%>" class="player_text">
-          <%= athlete.full_name %>
-        </td>
-        <td class="player_text">
-          <%= athlete.position %>
-        </td>
-        <td class="player_text">
-          <% unless athlete.professional_team == nil %>
-            <%= athlete.professional_team.short_name.upcase %>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <br>
+  <table class = "player_table">
+
+    <% @athletes.each do |athlete| %>
+    <tr class="position_<%=athlete.position%>">
+      <td>
+        <%= fields_for "athlete_ids[]", athlete do |athlete_fields| %>
+          <%= athlete_fields.check_box [], { :checked => false }, athlete.id, nil %>
+        <% end %>
+      </td>
+      <td id="player_<%=athlete.id%>" class="player_text">
+        <%= athlete.full_name %>
+      </td>
+      <td class="player_text">
+        <%= athlete.position %>
+      </td>
+      <td class="player_text">
+        <% unless athlete.professional_team == nil %>
+          <%= athlete.professional_team.short_name.upcase %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+
+</div>
+<br>

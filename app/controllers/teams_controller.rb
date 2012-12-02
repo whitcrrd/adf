@@ -9,7 +9,9 @@ class TeamsController < ApplicationController
     @team = Team.new
     @team.name = "#{current_user.name}'s Team"
     @athletes = []
+    @ath_by_pos = [] ########## for individual menus
     ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
+    ['PG','SG','SF','PF','C'].each_with_index { |pos, index| @ath_by_pos[index] = Athlete.top_pos(pos) } ########### for individual menus
   end
 
   def create
@@ -32,7 +34,9 @@ class TeamsController < ApplicationController
   def edit
     @team = Team.find(params[:id])
     @athletes = []
+    @ath_by_pos = [] ########## for individual menus
     ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
+    ['PG','SG','SF','PF','C'].each_with_index { |pos, index| @ath_by_pos[index] = Athlete.top_pos(pos) } ########### for individual menus
   end
 
   def update

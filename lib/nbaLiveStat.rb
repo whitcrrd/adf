@@ -10,7 +10,7 @@ module NbaLiveStat
     now_num = now_hour + now_min
     home_teams = ProfessionalTeam.where("espn_box_score_id is NOT null")
     home_teams.each do |team|
-      update_athletes_live_stats(team) if now_num > team.game_time
+      update_athletes_live_stats(team) if now_num > ( team.game_time || 0 )
     end
   end
 
