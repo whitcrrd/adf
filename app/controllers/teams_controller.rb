@@ -7,24 +7,18 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)").includes(:professional_team)
+    @team.name = "#{current_user.name}'s Team"
+    @athletes = []
+    ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
   end
 
   def create
-    # @game = Game.find(params[:game_id])
-    # if @game == nil
-    #   @game = Game.new
-    #   @game.save
-    # end
     @team = current_user.teams.create
     @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
-    # @team.date = Date.today
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name] == "" ? params[:team][:name] : "something"
-    # @team.game_id = @game.id
+    @team.name = params[:team][:name] == "" ? "Team_#{@team.date}" : params[:team][:name]
     if @team.save
       redirect_to edit_team_path(@team)
-      # redirect_to game_team_path(@game.id, @team.id)
     else
       render :back
     end
@@ -35,18 +29,16 @@ class TeamsController < ApplicationController
     @game = @team.game
   end
 
-
   def edit
     @team = Team.find(params[:id])
-    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)")
-    # @athletes = Athlete.joins(:professional_team).where("professional_teams.game_time is not null")
-    # @athletes = Athlete.all
+    @athletes = []
+    ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
   end
 
   def update
     @team = current_user.teams.find(params[:id])
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name] == "" ? params[:team][:name] : "something"
+    @team.name = params[:team][:name] == "" ? "Team_#{@team.date}" : params[:team][:name]
     if @team.save
       redirect_to edit_team_path(@team)
     else
