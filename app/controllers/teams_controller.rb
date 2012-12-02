@@ -7,8 +7,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    # @athletes = Athlete.joins(:professional_team).where("professional_teams.game_time is not null")
-    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)")
+    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)").includes(:professional_team)
   end
 
   def create
