@@ -7,7 +7,8 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    @athletes = Athlete.all
+    # @athletes = Athlete.joins(:professional_team).where("professional_teams.game_time is not null")
+    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)")
   end
 
   def create
@@ -20,7 +21,7 @@ class TeamsController < ApplicationController
     @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
     # @team.date = Date.today
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name]
+    @team.name = params[:team][:name] == "" ? params[:team][:name] : "something"
     # @team.game_id = @game.id
     if @team.save
       redirect_to edit_team_path(@team)
@@ -38,14 +39,15 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
-    @athletes = Athlete.all
-    # @my_team = @team.athletes
+    @athletes = Athlete.joins(:professional_team, :season_average).where("professional_teams.game_time is not null and (season_averages.points > 12 or season_averages.rebounds > 7 || season_averages.assists > 5)")
+    # @athletes = Athlete.joins(:professional_team).where("professional_teams.game_time is not null")
+    # @athletes = Athlete.all
   end
 
   def update
     @team = current_user.teams.find(params[:id])
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name]
+    @team.name = params[:team][:name] == "" ? params[:team][:name] : "something"
     if @team.save
       redirect_to edit_team_path(@team)
     else

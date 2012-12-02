@@ -18,8 +18,6 @@
           <% end %>
         </td>
         <td id="player_<%=athlete.id%>" class="player_text">
-          <%#= athlete.last_name %>
-          <%#= athlete.first_name %>
           <%= athlete.full_name %>
         </td>
         <td class="player_text">
@@ -28,7 +26,7 @@
         <td class="player_text">
           <% unless athlete.professional_team == nil %>
             <%= athlete.professional_team.short_name.upcase %>
-          <% end%>
+          <% end %>
         </td>
       </tr>
       <% end %>
