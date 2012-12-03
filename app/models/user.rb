@@ -2,8 +2,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name
 
   has_many :teams
+  has_many :games, :through => :teams
 
 scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?", input).order("teams.points desc").uniq } #SCOTT TEST THIS PLEASE
+  
+
   
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

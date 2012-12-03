@@ -13,35 +13,13 @@ class Game < ActiveRecord::Base
   
   # scope :today, where("game_time < ? and game_time >= ?", [Time.zone.now.end_of_day, Time.zone.now.beginning_of_day])
 
-  # Add @game.game_winner to game show view to display the winner of the game
   MAX_TEAM_COUNT = 2
-  def game_winner
-    find_teams
-    if @home_team.points > @away_team.points
-      self.winner_id = @home_team.id
-      self.loser_id = @away_team.id
-      @home_team.name
-    elsif
-      self.winner_id = @away_team.id
-      self.loser_id = @home_team.id
-      @away_team.name
-    else
-      "Tie Game"
-    end
+  def assign_results!
+    self.winner = teams.max { |t1, t2| t1.score <=> t2.score }
+    self.loser = teams.min { |t1, t2| t1.score <=> t2.score }
   end
 
   def full?
     self.teams.count >= MAX_TEAM_COUNT
-  end
-
-  def find_teams
-    teams_array = []
-    if self.teams.length > 1
-      self.teams.each do |team|
-        teams_array << team
-      end
-      @away_team = Team.find_by_id(teams_array[0].id)
-      @home_team = Team.find_by_id(teams_array[1].id)
-    end
   end
 end

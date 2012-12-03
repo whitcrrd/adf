@@ -10,11 +10,12 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :athletes
 
+  before_create :set_date
   after_create :create_game_if_not_present!
   # validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
   # validate :must_have_5_unique_positions
 
-
+  
   def athlete_ids=(athlete_ids)
     self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
@@ -34,8 +35,6 @@ class Team < ActiveRecord::Base
     total_fantasy_points
   end
 
-  private
-
   def create_game_if_not_present!
     self.build_game unless self.game.present?
     self.save
@@ -46,6 +45,15 @@ class Team < ActiveRecord::Base
     if positions.uniq.length != positions.length
       errors.add(:team, "must have a Point Guard, Center, Shooting Guard, Power Forward, and Small Forward")
     end
+  end
+  
+  def set_date
+    self.date = (Time.now.utc + Time.zone_offset('EST')).to_date
+  end
+  
+  def name=(new_name)
+    new_name = "Team_#{date}" if new_name.blank?
+    super(new_name)
   end
 
   # helper_method :total_fantasy_points
