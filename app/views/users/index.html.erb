@@ -20,12 +20,12 @@
 		    <div class="well" id="leaderboard">
 		      <h2><u>Yesterday's Leaderboard</u></h2>
 		      <table class="table">
-		        <% @users.each do |user|%>
-		        <tr>
-		          <td><%= user.name %></td>
-		          <% user.teams.each do |team|%>
-		          	<td><b><%=team.points%></b> points</td>
-		          	<%end%>
+		        <% @teams.each do |team|%>
+		        <tr> 
+		          <td><%= team.user.name %></td>
+		          <%# user.teams.each do |team|%>
+		          <td><b><%=team.points%></b> points</td>
+		          	<%#end%>
 		        </tr>
 		        <%end%>
 		     </div>
