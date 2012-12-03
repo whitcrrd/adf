@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.create
-    @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
+    # @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
     @team.name = params[:team][:name].blank? ? "Team_#{@team.date}" : params[:team][:name]
     if @team.save
