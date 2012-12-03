@@ -41,10 +41,12 @@
     
   </div>
   <div class="show_position">
-    <% @teams.first.athletes.each do |athlete| %>
-      <%= render 'athletes/athlete_points_today', :athlete => athlete %>
-    <% end %>  
-    <%= render 'athletes/team_points_today'%>
+    <% if @game.full? %>
+      <% @teams.first.athletes.each do |athlete| %>
+        <%= render 'athletes/athlete_points_today', :athlete => athlete %>
+      <% end %>  
+      <%= render 'athletes/team_points_today'%>
+    <% end %>
   </div>
   
   <div class="show_lineup">

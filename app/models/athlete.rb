@@ -13,10 +13,13 @@ class Athlete < ActiveRecord::Base
   has_many :current_stats
 
   # scope :top_pos, lambda { |input|  joins(:professional_team, :season_average).where("professional_teams.game_time is not null and athletes.position = '#{input}'").limit(10).order("season_averages.points DESC").includes(:professional_team)}
-  scope :top_pos, lambda { |input|  joins(:professional_team, :season_average).select("athletes.*, (season_averages.points + season_averages.rebounds + season_averages.assists) as fantasy_points").where("professional_teams.game_time is not null and athletes.position = ?", input).order("fantasy_points desc").limit(10)
-  }
+  scope :top_pos, lambda { |input|  joins(:professional_team, :season_average).select("athletes.*, (season_averages.points + season_averages.rebounds + season_averages.assists) as fantasy_points").where("professional_teams.game_time is not null and athletes.position = ?", input).order("fantasy_points desc").limit(10)}
   
   # (season_averages.points + season_averages.rebounds + season_averages.assists) AS 
+
+  # def top_pos(position_name)
+  #   joins(:professional_team, :season_average).select("athletes.*, (season_averages.points + season_averages.rebounds + season_averages.assists) as fantasy_points").where("professional_teams.game_time IS NOT NULL").where("athletes.position" => position_name).order("fantasy_points DESC").limit(10)
+  # end
 
   def find_stats(team_id)
     @team_id = team_id
