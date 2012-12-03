@@ -8,17 +8,15 @@ class TeamsController < ApplicationController
   def new
     @team = Team.new
     @team.name = "#{current_user.name}'s Team"
-    @athletes = []
-    @ath_by_pos = [] ########## for individual menus
-    ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
-    ['PG','SG','SF','PF','C'].each_with_index { |pos, index| @ath_by_pos[index] = Athlete.top_pos(pos) } ########### for individual menus
+    @athletes = Athlete.top_by_position
+    @ath_by_pos = Athlete.top_tens_by_position
   end
 
   def create
     @team = current_user.teams.create
     @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name] == "" ? "Team_#{@team.date}" : params[:team][:name]
+    @team.name = params[:team][:name].blank? ? "Team_#{@team.date}" : params[:team][:name]
     if @team.save
       redirect_to edit_team_path(@team)
     else
@@ -33,16 +31,14 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
-    @athletes = []
-    @ath_by_pos = [] ########## for individual menus
-    ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
-    ['PG','SG','SF','PF','C'].each_with_index { |pos, index| @ath_by_pos[index] = Athlete.top_pos(pos) } ########### for individual menus
+    @athletes = Athlete.top_by_position
+    @ath_by_pos = Athlete.top_tens_by_position
   end
 
   def update
     @team = current_user.teams.find(params[:id])
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name] == "" ? "Team_#{@team.date}" : params[:team][:name]
+    @team.name = params[:team][:name].blank? ? "Team_#{@team.date}" : params[:team][:name]
     if @team.save
       redirect_to edit_team_path(@team)
     else

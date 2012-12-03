@@ -56,7 +56,7 @@ class Athlete < ActiveRecord::Base
     athletes
   end
   
-  def self.top_tens_by_positions
+  def self.top_tens_by_position
     POSITIONS.collect { |pos| top_pos(pos) }
   end
 
