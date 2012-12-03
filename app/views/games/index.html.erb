@@ -1,6 +1,11 @@
-<h2>Games Index</h2>
+<div class="container centered">
+  <h2>Your Games</h2>
 
-<%  @games.each do |game| %>
-  <%= game.teams %>
-
-<% end %>
+  <% @games.each do |game| %>
+    <div class="game_<%=game.id%>">
+      
+      <%#= render 'matchup', :game => game %>
+      <%= link_to render(:partial => 'matchup', :locals => {:game => game}), game_path(game) %>
+    </div>
+  <% end %>
+</div>
