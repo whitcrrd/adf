@@ -5,6 +5,8 @@ class Team < ActiveRecord::Base
   has_many :athletes, :through => :athletes_teams
   belongs_to :user
   belongs_to :game
+  
+  delegate :name, :to => :user, :prefix => true, :allow_nil => true
 
   accepts_nested_attributes_for :athletes
 

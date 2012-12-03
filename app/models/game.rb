@@ -3,6 +3,11 @@ class Game < ActiveRecord::Base
 
   has_many :teams
   accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
+  belongs_to :winner, :class_name => "Team"
+  belongs_to :loser, :class_name => "Team"
+  
+  delegate :user_name, :to => :winner, :prefix => true, :allow_nil => true # call game.winner_user_name to get name of winner
+  delegate :user_name, :to => :loser, :prefix => true, :allow_nil => true # call game.loser_user_name to get name of loser
   
   scope :all_user_games, lambda { |input| joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
 
