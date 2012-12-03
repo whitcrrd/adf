@@ -11,33 +11,13 @@ class Game < ActiveRecord::Base
   
   scope :all_user_games, lambda { |input| joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
 
-  # Add @game.game_winner to game show view to display the winner of the game
   MAX_TEAM_COUNT = 2
-  def game_winner
-    # find_teams
-    if (self.teams.first.points > self.teams.last.points) || (self.teams.first.points == self.teams.last.points)
-      self.winner_id = self.teams.first.id
-      self.loser_id = self.teams.last.id
-      self.save
-    else #self.teams.last.points < self.teams.first.points
-      self.winner_id = self.teams.last.id
-      self.loser_id = self.teams.first.id
-      self.save
-    end
+  def assign_results!
+    self.winner = teams.max { |t1, t2| t1.score <=> t2.score }
+    self.loser = teams.min { |t1, t2| t1.score <=> t2.score }
   end
 
   def full?
     self.teams.count >= MAX_TEAM_COUNT
   end
-
-  # def find_teams
-  #   teams_array = []
-  #   if self.teams.length > 1
-  #     self.teams.each do |team|
-  #       teams_array << team
-  #     end
-  #     @away_team = Team.find_by_id(teams_array[0].id)
-  #     @home_team = Team.find_by_id(teams_array[1].id)
-  #   end
-  # end
 end
