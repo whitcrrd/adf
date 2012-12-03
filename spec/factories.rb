@@ -38,7 +38,7 @@ FactoryGirl.define do
   factory :athlete do |athlete|
     athlete.first_name  {Faker::Name.first_name}
     athlete.last_name   {Faker::Name.last_name}
-    athlete.professional_team {teams.sample}
+    # athlete.professional_team {teams.sample}
     athlete.position {positions.sample}
   end
 
@@ -48,6 +48,11 @@ FactoryGirl.define do
     team.points {rand(0..100)}
     team.name {Faker::Name.first_name}
     team.sequence(:game_id) {|n| "#{n}"}
+    # team.sequence(:user_id) {|n| "#{n}"}
+  end
+
+  factory :user do |user|
+    user.name {Faker::Name.name}
   end
 end
 
