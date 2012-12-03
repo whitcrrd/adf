@@ -1,7 +1,7 @@
 <% 0.upto(4) do |index| %>
   <% positions = ['PG', 'SG', 'SF', 'PF', 'C'] %>
   <div href="#" class="player_card">
-    <img src="/assets/empty_profile.png">
-    <div class="empty_card_name">Player <%= index + 1 %></div>
+    <img src="/assets/empty_profile.png" id="player_image_<%=index + 1%>" class="empty_player_img">
+    <div class="empty_card_name" id="player_card_name_<%=index + 1%>">Player</div>
   </div>
 <% end %>
