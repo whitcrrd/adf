@@ -1,16 +1,26 @@
-<% unless @game.full? %>
-  <%= form_for @game do |game_form| %>
-    <%= @game.teams.first.name %>
-    vs
-    <%= game_form.fields_for :teams, @new_team do |f| %>
-      <%= f.text_field :name %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="container centered">
+  <h3>Play against <%= @game.teams[0].name %></h3>
+  
+  <div class="left_col_lg">    
+    <%= render 'athletes/blank' %>
+  </div>
+  
+  <div class="right_col_sm">
+    <% unless @game.full? %>
+      <%= form_for @game do |game_form| %>
+        <%= @game.teams.first.name %>
+        vs
+        <%= game_form.fields_for :teams, @new_team do |f| %>
 
-      <%= render 'teams/form_team', :f => f %>
+          <% default_name = current_user.name + "'s Team" %>
+          <%= f.text_field :name, :value => default_name %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+
+          <%= render 'teams/form_team', :f => f %>
+        <%end%>
+
+        <%= game_form.submit "Join Game" %>
+      <%end%>
     <%end%>
-
-    <%= game_form.submit "Join Game" %>
-  <%end%>
-<%end%>
-
-
+  </div>
+</div>

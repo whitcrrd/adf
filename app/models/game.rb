@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
 
   has_many :teams
   accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
+  
+  scope :all_user_games, lambda { |input| joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
 
   # Add @game.game_winner to game show view to display the winner of the game
   MAX_TEAM_COUNT = 2
