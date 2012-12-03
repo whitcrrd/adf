@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.joins(:teams => :user).order("teams.points DESC")
   end
 
   def show
