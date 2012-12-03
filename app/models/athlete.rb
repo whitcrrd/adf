@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 class Athlete < ActiveRecord::Base
+  POSITIONS = ['PG', 'SG', 'SF', 'PF', 'C']
   attr_accessible :first_name, :last_name, :position, :professional_team, :season_average, :full_name, :current_stats
 
   belongs_to :professional_team
@@ -47,6 +48,16 @@ class Athlete < ActiveRecord::Base
   def url_name
     return 'nene' if self.full_name =~ /^Nen/
     self.full_name.split(' ').join('_').gsub(/[\.\']/, '').gsub('_Jr', '').downcase
+  end
+  
+  def self.top_by_position
+    athletes = []
+    POSITIONS.each { |pos| athletes += top_pos(pos) }
+    athletes
+  end
+  
+  def self.top_tens_by_positions
+    POSITIONS.collect { |pos| top_pos(pos) }
   end
 
 
