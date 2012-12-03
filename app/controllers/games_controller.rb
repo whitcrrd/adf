@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
   def index
-    @games = Game.all
+    # @games = Game.all
+    @games = Game.all_user_games(current_user.id)
   end
 
   def new
@@ -28,8 +29,11 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find params[:id]
-    @athletes = Athlete.all
-
+    # @game.teams[1].name = "#{current_user.name}'s Team"
+    @athletes = []
+    @ath_by_pos = [] ########## for individual menus
+    ['PG','SG','SF','PF','C'].each { |pos| @athletes += Athlete.top_pos(pos) }
+    ['PG','SG','SF','PF','C'].each_with_index { |pos, index| @ath_by_pos[index] = Athlete.top_pos(pos) } ########### for individual menus
     if @game.full?
       render :notice => "game is full"
     else

@@ -1,0 +1,146 @@
+.centered {
+  width: 980px;
+  margin: 0 auto;
+/*  background: #eee;*/
+  text-align: center;
+}
+
+.left_col_lg {
+  width: 680px;
+  height: 100%;
+  float: left;
+  text-align: center;
+  border: 1px solid #000;
+}
+
+.right_col_sm {
+  width: 250px;
+  height: 100%;
+  float: right;
+  border: 1px solid #000;
+}
+
+a table.game_index_table {
+  text-decoration: none;
+  color: black;
+}
+
+table.game_index_table {
+  padding: 10px;
+  margin: 20px 0;
+  table-layout: fixed;
+}
+
+td.game_index_header{
+  font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+}
+
+td.game_index_team {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #222;
+  padding: 10px 20px;
+  width: 300px;
+  text-align: center;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+td.game_index_vs {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  width: 40px;
+}
+
+td.game_index_profile_pic {
+/*  height: 20px;*/
+  width: 80px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+td.game_index_profile_pic img {
+  height: 50px;
+  width: 50px;
+}
+
+tr.game_index_matchup_row {
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-radius: 25px;
+  height: 20px;
+}
+
+td.game_index_lineup_home {
+  text-align: right;
+}
+
+td.game_index_lineup_away {
+  text-align: left;
+}
+
+tr.game_index_lineup_row {
+  border-bottom: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-radius: 25px;
+  height: 120px;
+}
+
+/**********************/
+
+div.show_fb_pic {
+/*  background: #ddd;*/
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 50px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+div.show_name {
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 348px;
+  height: 30px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.show_lineup {
+/*  background: #ddd; */
+  text-align: center;
+  width: 300px;
+  padding: 0;
+  border: 0;
+  margin: -20px -4px 0 -4px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.show_position {
+/*  background: #ddd; */
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 80px;
+  margin: -20px -4px 0 -4px;
+  padding: 0;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+img.show_fb_pic_empty {
+  height: 50px;
+  width: 50px;
+}

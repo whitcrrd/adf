@@ -1,32 +1,60 @@
-<h3>Game Show Page</h3>
-<!-- display both users and their teams -->
+<div class="containter centered">
+  
+  <h3>Game for <%= @teams.first.date %></h3>
+  <!-- display both users and their teams -->
 
-<!-- <% @teams.each do |team| %>
-  <%= team.name %>
-<% end %> -->
+  <div class="show_fb_pic">
+    <img src="<%=@teams.first.user.image_url%>">
+  </div>
+  <div class="show_name">
+    <%= @teams.first.name %>
+  </div>
+  <div class="show_name">
+    <% if @game.full? %>
+      <%= @teams.last.name %>
+    <% else %>
+      <%= link_to 'Join This Game', edit_game_path(@game) %>
+    <% end %>
+  </div>
+  <div class="show_fb_pic">
+    <% if @game.full? %>
+      <img src="<%=@teams.last.user.image_url%>">
+    <% else %>
+      <img src="/assets/empty_profile.png" class="show_fb_pic_empty">
+    <% end %>
+  </div>
+  
+  <!-- <br> -->
+  
+  <div class="show_lineup">
+    <% @teams.first.athletes.each do |athlete| %>
+      <%#= render 'athletes/athlete_pic', :athlete => athlete %>
+      <%= render 'athletes/athlete_pic_small', :athlete => athlete %>
+    <% end %>
+  </div>
+  
+  <div class="show_position">
+    <% @teams.first.athletes.each do |athlete| %>
+      <%= render 'athletes/athlete_points_today', :athlete => athlete %>
+    <% end %>
+    <%= render 'athletes/team_points_today'%>
+    
+  </div>
+  <div class="show_position">
+    <% @teams.first.athletes.each do |athlete| %>
+      <%= render 'athletes/athlete_points_today', :athlete => athlete %>
+    <% end %>  
+    <%= render 'athletes/team_points_today'%>
+  </div>
+  
+  <div class="show_lineup">
+    <% if @game.full? %>
+      <% @teams.last.athletes.each do |athlete| %>
+        <%#= render 'athletes/athlete_pic', :athlete => athlete %>
+        <%= render 'athletes/athlete_pic_small', :athlete => athlete %>
+      <% end %>
+    <% end %>
+  </div>
 
-<% if @teams.length <= 1 %>
-  <%= link_to @teams.first.name, team_path(@teams.first) %>
-  <% @teams.first.athletes.each do |athlete| %>
-    <%= athlete.full_name %>
-  <% end %>
-<% elsif @teams.length >1 %>
-  <%= link_to @teams.first.name, team_path(@teams.first) %>
-  <% @teams.first.athletes.each do |athlete| %>
-    <%= athlete.full_name %>
-  <% end %>
-  vs
-  PG
-  C
-  SG
-  SF
-  PF
-  <%= link_to @teams.last.name, team_path(@teams.last) %>
-  <% @teams.last.athletes.each do |athlete| %>
-    <%= athlete.full_name %>
-  <% end %>
-<% end %>
 
-<% unless @game.full? %>
-  <%= link_to 'Join This Game', edit_game_path(@game) %>
-<% end %>
+</div>
