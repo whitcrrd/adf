@@ -25,7 +25,7 @@ class GamesController < ApplicationController
   def update
     @game = Game.find params[:id]
     if @game.update_attributes params[:game]
-      @team = @game.teams.last ########## there will always be a last team
+      @team = @game.teams.last
       if @team
         @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
       end
