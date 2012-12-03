@@ -15,11 +15,11 @@ class Game < ActiveRecord::Base
   MAX_TEAM_COUNT = 2
   def game_winner
     # find_teams
-    if self.teams.first.points > self.teams.last.points
+    if (self.teams.first.points > self.teams.last.points) || (self.teams.first.points == self.teams.last.points)
       self.winner_id = self.teams.first.id
       self.loser_id = self.teams.last.id
       self.save
-    else self.teams.last.points < self.teams.first.points
+    else #self.teams.last.points < self.teams.first.points
       self.winner_id = self.teams.last.id
       self.loser_id = self.teams.first.id
       self.save
