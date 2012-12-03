@@ -1,25 +1,7 @@
 class GamesController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
   def index
-    # @games = Game.all
-    @games = Game.all_user_games(current_user.id)
-  end
-
-  def new
-    @game = Game.new
-    redirect_to @game
-  end
-
-  def create
-    @game = Game.new(params[:game])
-
-    if @game.save
-      # redirect_to @game
-      # @game.team.create
-      redirect_to @game
-    else
-      redirect_to :back, notice: "Error creating a new game"
-    end
+    @games = current_user.games
   end
 
   def show
@@ -43,13 +25,11 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find params[:id]
-
     if @game.update_attributes params[:game]
       @team = @game.teams.last
       if @team
         @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
       end
-
       redirect_to @game
     else
       render :edit
