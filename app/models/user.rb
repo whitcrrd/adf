@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
 scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?", input).order("teams.points desc").uniq } #SCOTT TEST THIS PLEASE
   
+
+  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
