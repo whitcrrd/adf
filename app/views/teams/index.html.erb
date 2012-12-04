@@ -1,23 +1,21 @@
-
-
 <div class="container centered">
   <h2>My Teams</h2>
 
   <% @teams.each do |team| %>
   
-    <div class="games_index_team_date">
+    <div class="teams_index_team_date">
       <%= team.date.inspect %>
     </div>
-    <div class="games_index_team">
-      <div class="games_index_team_name_box">
+    <div class="teams_index_team">
+      <div class="teams_index_team_name_box">
         <% if team.date == Date.today %>
-          <%= link_to team.name, edit_team_path(team.id), :class => "games_index_team_name" %>
+          <%= link_to team.name, edit_team_path(team.id), :class => "teams_index_team_name" %>
         <% else %>
-          <div class="games_index_team_name"><%= team.name %></div>
+          <div class="teams_index_team_name"><%= team.name %></div>
         <% end %>
       </div>
       <div class="card_lineup_container">    
-        <div class="games_index_team_lineup">
+        <div class="teams_index_team_lineup">
           <% team.athletes.each do |athlete| %>
             <div class="card_container">
               <%= render 'athletes/athlete_mini_card', :athlete => athlete %>
