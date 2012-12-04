@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
 
-  before_filter :authorize, :only => [:show]
+  before_filter :authorize, :only => [:show, :edit]
+  respond_to :json, :html
   def index
     @teams = current_user.teams
   end
@@ -36,14 +37,14 @@ class TeamsController < ApplicationController
   end
 
   def update
-    @team = current_user.teams.find(params[:id])
-    @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
-    @team.name = params[:team][:name].blank? ? "Team_#{@team.date}" : params[:team][:name]
+    @team = Team.find(params[:id])
+    athlete = Athlete.find params[:athlete_id]
+    @team.athletes << athlete
     if @team.save
-      redirect_to edit_team_path(@team)
+      render :json => {:success => true, :player_card => render_to_string(:partial => 'athletes/athlete_pic', :locals => {:athlete => athlete})}
     else
-      redirect_to :back
     end
+
   end
 
   def destroy
