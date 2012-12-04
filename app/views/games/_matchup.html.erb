@@ -1,40 +1,33 @@
-<table class="game_index_table">
-  <tr>
-    <td class="game_index_header" colspan=5>
-      <%= game.teams[0].date.inspect %>
-    </td>
-  </tr>
-  <tr class="game_index_matchup_row">
-    <td class="game_index_profile_pic">
-      <img src="<%=game.teams[0].user.image_url%>">
-    </td>
-    <td class="game_index_team">
-      <%= game.teams[0].name %>
-    </td>
-    <td class="game_index_vs">
-      VS
-    </td>
-    <td class="game_index_team">
-      <%= game.full? ? game.teams[1].name : "TBD" %>
-    </td>
-    <td class="game_index_profile_pic">            
-      <img src="<%= game.full? ? game.teams[0].user.image_url : "/assets/empty_profile.png" %>">
-    </td>
-  </tr>
-  <tr class="game_index_lineup_row">
-    <td class="game_index_lineup_home" colspan=2>
-      <% game.teams[0].athletes.each do |athlete| %>
+<div class="game_<%=game.id%> games_index">
+  
+  <div class="games_index_fb_pic">
+    <img src="<%=game.teams[0].user.image_url%>">
+  </div>
+  <div class="games_index_team_name">
+    <%= game.teams[0].name %>
+  </div>
+  <div class="games_index_vs">
+    VS
+  </div>
+  <div class="games_index_team_name">
+    <%= game.full? ? game.teams[1].name : "TBD" %>
+  </div>
+  <div class="games_index_fb_pic">
+    <img src="<%= game.full? ? game.teams[1].user.image_url : "/assets/empty_profile.png" %>">
+  </div>
+  
+  <div class="games_index_home_lineup">
+    <% game.teams[0].athletes.each do |athlete| %>
+      <img src="http://www.nba.com/media/playerfile/<%=athlete.url_name%>.jpg" title="<%=athlete.full_name%>">
+    <% end %>
+  </div>
+  <div class="games_index_vs">
+  </div>
+  <div class="games_index_road_lineup">
+    <% if game.full? %>
+      <% game.teams[1].athletes.each do |athlete| %>
         <img src="http://www.nba.com/media/playerfile/<%=athlete.url_name%>.jpg" title="<%=athlete.full_name%>">
       <% end %>
-    </td>
-    <td class="empty_void">
-    </td>
-    <td class="game_index_lineup_away" colspan=2>
-      <% if game.full? %>
-        <% game.teams[1].athletes.each do |athlete| %>
-          <img src="http://www.nba.com/media/playerfile/<%=athlete.url_name%>.jpg" title="<%=athlete.full_name%>">
-        <% end %>
-      <% end %>
-    </td>
-  </tr>
-</table>
+    <% end %>      
+  </div>
+</div>

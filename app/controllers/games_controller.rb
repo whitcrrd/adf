@@ -1,16 +1,16 @@
 class GamesController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
   def index
-    @games = current_user.games
+    @games = Game.all_user_games(current_user)
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find_by_slug(params[:id])
     @teams = @game.teams
   end
 
   def edit
-    @game = Game.find params[:id]
+    @game = Game.find_by_slug(params[:id])
     @athletes = []
     @ath_by_pos = [] 
     @athletes = Athlete.top_by_position
@@ -23,7 +23,7 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = Game.find params[:id]
+    @game = Game.find_by_slug(params[:id])
     if @game.update_attributes params[:game]
       @team = @game.teams.last
       if @team

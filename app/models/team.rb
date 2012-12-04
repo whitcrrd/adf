@@ -12,9 +12,10 @@ class Team < ActiveRecord::Base
 
   before_create :set_date
   after_create :create_game_if_not_present!
-  # validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
-  # validate :must_have_5_unique_positions
+  validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
+  validate :must_have_5_unique_positions
 
+  scope :all_user_teams, lambda { |input| where("user_id = ?", input).order("created_at DESC") }
   
   def athlete_ids=(athlete_ids)
     self.athletes += Athlete.find_all_by_id(athlete_ids)

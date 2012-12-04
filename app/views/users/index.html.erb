@@ -11,9 +11,10 @@
 		      <% if current_user %>
 		      <div id="btn-center">
 		      	<%=link_to 'Play!', new_team_path(current_user), :class=>"btn btn-warning btn-large" %>
+		      </div>
 		      <% end %>
 		      		<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/" data-send="false" data-width="450" data-show-faces="true"></div>
-		    	</div>
+
 		    </div>
 	    </div>
 	    <div class="span6" id="leaderboard-align">
@@ -22,7 +23,7 @@
 		      <table class="table">
 		        <% @teams.each do |team|%>
 		        <tr> 
-		          <td><%= team.user.name %></td>
+		          <td><%= link_to "#{team.user.name}", user_path(team.user_id) %></td>
 		          <%# user.teams.each do |team|%>
 		          <td><b><%=team.points%></b> points</td>
 		          	<%#end%>

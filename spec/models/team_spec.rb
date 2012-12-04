@@ -34,10 +34,11 @@ describe Team do
         team.should_not be_valid
       end
     end
-
     
   end
-
-
+  
+  context "delegate" do
+    it { should respond_to(:name)}
+  end
 end
 

@@ -1,4 +1,4 @@
-<select id = "position_list" xonchange="positionChange(this)">
+<select id = "position_list" >
   <option value="ALL">All</option>
   <option value="PG">Point Guard</option>
   <option value="SG">Shooting Guard</option>
@@ -12,7 +12,7 @@
   <select xonchange="positionChange(this)">
     <option value="player">--- <%= pos %> ---</option>
     <% @ath_by_pos[num].each do |athlete| %>
-      <option value="player"><%= athlete.full_name %></option>
+      <option value=player"><%= athlete.full_name %></option>
     <% end %>
   </select>
 <% end %> -->
@@ -21,12 +21,19 @@
 <div class="player_list">
 
   <table class = "player_table">
+    <thead>
+      <td> </td>
+      <td class="player_text" id="player_name">Player Name</td>
+      <td class="player_text">Pos</td>
+      <td class="player_text">Team</td>
+      <td class="player_text">Pts</td>
+    </thead>
 
     <% @athletes.each do |athlete| %>
-    <tr class="position_<%=athlete.position%>">
+    <tr class="position_<%=athlete.position%>" id="players">
       <td>
       </td>
-      <td id="player_<%=athlete.id%>" class="player_text">
+      <td id="player_<%=athlete.id%>" class="player_text" target="full_name">
         <%= athlete.full_name %>
       </td>
       <td class="player_text">
@@ -37,6 +44,10 @@
           <%= athlete.professional_team.short_name.upcase %>
         <% end %>
       </td>
+      <td class="player_text" id="pts" target="<%=athlete.season_average.points%>">
+        <%=athlete.season_average.points%>
+      </td>
+
     </tr>
     <% end %>
 

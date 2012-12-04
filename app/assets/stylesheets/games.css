@@ -3,6 +3,7 @@
   margin: 0 auto;
 /*  background: #eee;*/
   text-align: center;
+/*  background: #0D4F8B;*/
 }
 
 .left_col_lg {
@@ -29,6 +30,7 @@ table.game_index_table {
   padding: 10px;
   margin: 20px 0;
   table-layout: fixed;
+  background: #fff;
 }
 
 td.game_index_header{
@@ -94,8 +96,80 @@ tr.game_index_lineup_row {
 
 /**********************/
 
-div.show_fb_pic {
+.games_index {
+  display: inline-block;
+  background: #fff;
+  padding: 0;
+  margin: 0 0 20px 0;
+  width: 900px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
+.games_index_team_date {
+  text-align: right;
+  display: inline-block;
+  width: 860px;
+  font-weight: bold;
+  padding-right: 90px;
+}
+.games_index_fb_pic {
 /*  background: #ddd;*/
+  font-weight: bold;
+  text-align: center;
+  width: 50px;
+  padding: 10px 4px;
+  display: inline-block;
+  vertical-align: top;
+}
+.games_index_team_name {
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  width: 350px;
+  padding: 20px 0;
+  display: inline-block;
+  vertical-align: top;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.games_index_vs {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px 10px;
+  width: 40px;
+  display: inline-block;
+}
+.games_index_home_lineup {
+/*  background: #ddd; */
+  text-align: right;
+  width: 350px;
+  margin: 0 0 10px 0;
+  border: 0;
+/*  margin: -20px -4px 0 -4px;*/
+  display: inline-block;
+  vertical-align: top;
+}
+.games_index_road_lineup {
+/*  background: #ddd; */
+  text-align: left;
+  width: 350px;
+  margin: 0 0 10px 0;
+  border: 0;
+/*  margin: -20px -4px 0 -4px;*/
+  display: inline-block;
+  vertical-align: top;
+}
+
+a div.games_index {
+  text-decoration: none;
+  color: black;
+}
+
+
+div.show_fb_pic {
+/*  background: #ddd; */
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -144,3 +218,9 @@ img.show_fb_pic_empty {
   height: 50px;
   width: 50px;
 }
+
+div.game_link {
+  font-size: 20px;
+  padding-bottom: 16px;
+}
+
