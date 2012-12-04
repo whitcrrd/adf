@@ -15,8 +15,16 @@ class Game < ActiveRecord::Base
 
   MAX_TEAM_COUNT = 2
   def assign_results!
-    self.winner = teams.max { |t1, t2| t1.score <=> t2.score }
-    self.loser = teams.min { |t1, t2| t1.score <=> t2.score }
+    self.winner = teams.max { |t1, t2| t1.points <=> t2.points }
+    self.loser = teams.min { |t1, t2| t1.points <=> t2.points }
+  end
+  
+  def add_win_to_winner!
+    self.winner.user.add_win
+  end
+  
+  def add_loss_to_loser!
+    self.loser.user.add_loss
   end
 
   def full?

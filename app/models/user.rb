@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name
+  attr_accessible :email, :name, :wins, :losses
 
   has_many :teams
   has_many :games, :through => :teams
@@ -23,5 +23,15 @@ scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?"
   
   def facebook
     @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+  
+  def add_win
+    self.wins += 1
+    self.save
+  end
+  
+  def add_loss
+    self.losses += 1
+    self.save
   end
 end
