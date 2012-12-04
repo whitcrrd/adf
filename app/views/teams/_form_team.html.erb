@@ -30,7 +30,7 @@
     </thead>
 
     <% @athletes.each do |athlete| %>
-    <tr class="position_<%=athlete.position%>">
+    <tr class="position_<%=athlete.position%>" id="players">
       <td>
         <%= fields_for "athlete_ids[]", athlete do |athlete_fields| %>
           <%= athlete_fields.check_box [], { :checked => false }, athlete.id, nil %>
