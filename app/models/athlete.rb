@@ -63,5 +63,27 @@ class Athlete < ActiveRecord::Base
     POSITIONS.collect { |pos| top_pos(pos) }
   end
 
+  def stats_today(date)
+    @stats = self.current_stats.find_by_game_date(date)
+  end
+  
+  def points_today(date)
+    stats_today(date)
+    @stats.blank? ? 0 : @stats.points
+  end
 
+  def rebounds_today(date)
+    stats_today(date)
+    @stats.blank? ? 0 : @stats.rebounds
+  end
+
+  def assists_today(date)
+    stats_today(date)
+    @stats.blank? ? 0 : @stats.assists
+  end
+  
+  def fantasy_points_today(date)
+    points_today(date) + rebounds_today(date) + assists_today(date)
+  end
+  
 end

@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes
+  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes, :game_date
 
   has_many :teams
   accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
