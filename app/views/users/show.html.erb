@@ -1,7 +1,31 @@
-<h3>User Show</h3>
-<%= current_user.id %><br>
-<%= current_user.name %>
+<div class="show-parent">
+	<div class="show-img"><img src="<%= current_user.image_url%>", alt="facebook profile pic", class="img-polaroid"></div>
+	<div class="show-img"><h2><%= current_user.name %><br></h2></div>
+</div>
+<br><br><br><br><br>
+<h1>Record</h1>
+<h1><%= current_user.wins %>-<%= current_user.losses%></h1>
+<br>
 
-<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div>
+<% current_user.last_five_teams.each do |team| %>
+<div class="container-fluid container">
+  <div class="row-fluid">
+    <div class="span8">
+      <h3><%= team.name %></h3>
+	  <h3><%= team.id %></h3>
+      <table>
+      <tr>
+      <% team.athletes.each do |athlete| %>
+        <%= athlete.full_name %>
+      <% end %>
+      </tr>
+      </table>
+    </div>
+  </div>
+</div><br><br><br><br><br>
+<% end %>
+	
+	
+<%= link_to "Share on Facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&redirect_uri=http://localhost:3000/users/#{current_user.id}"%><br>
 
-<%= link_to "Share on Facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&redirect_uri=http://localhost:3000/users/#{current_user.id}"%>
+<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div><br>

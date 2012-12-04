@@ -34,4 +34,8 @@ scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?"
     self.losses += 1
     self.save
   end
+  
+  def last_five_teams
+    @teams = teams.order('id desc').limit(5)
+  end
 end
