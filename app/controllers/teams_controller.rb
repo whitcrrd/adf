@@ -45,9 +45,4 @@ class TeamsController < ApplicationController
       redirect_to :back
     end
   end
-
-  def destroy
-
-  end
-
 end
