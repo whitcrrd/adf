@@ -151,3 +151,9 @@ img.show_fb_pic_empty {
   height: 50px;
   width: 50px;
 }
+
+div.game_link {
+  font-size: 20px;
+  padding-bottom: 16px;
+}
+
