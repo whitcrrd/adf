@@ -29,29 +29,31 @@
   <div class="show_lineup">
     <% @teams.first.athletes.each do |athlete| %>
       <%#= render 'athletes/athlete_pic', :athlete => athlete %>
-      <%= render 'athletes/athlete_pic_small', :athlete => athlete %>
+      <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.first.date %>
     <% end %>
   </div>
   
   <div class="show_position">
     <% @teams.first.athletes.each do |athlete| %>
-      <%= render 'athletes/athlete_points_today', :athlete => athlete %>
+      <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.first.date %>
     <% end %>
-    <%= render 'athletes/team_points_today'%>
+    <%= render 'athletes/team_points_today', :team => @teams.first, :date => @teams.first.date %>
     
   </div>
   <div class="show_position">
-    <% @teams.first.athletes.each do |athlete| %>
-      <%= render 'athletes/athlete_points_today', :athlete => athlete %>
-    <% end %>  
-    <%= render 'athletes/team_points_today'%>
+    <% if @game.full? %>
+      <% @teams.last.athletes.each do |athlete| %>
+        <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
+      <% end %>  
+      <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
+    <% end %>
   </div>
   
   <div class="show_lineup">
     <% if @game.full? %>
       <% @teams.last.athletes.each do |athlete| %>
         <%#= render 'athletes/athlete_pic', :athlete => athlete %>
-        <%= render 'athletes/athlete_pic_small', :athlete => athlete %>
+        <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
       <% end %>
     <% end %>
   </div>

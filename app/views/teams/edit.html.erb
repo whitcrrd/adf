@@ -1,24 +1,22 @@
 
-<div class="container-fluid container">
-  <div class="row-fluid">
+<div class="container centered">
 
-    <h2>Edit</h2>
+  <h2>Edit</h2>
 
-    <div class="span8">
-      <%=@team.calculate_fantasy_points%>
-      <h3><%= @team.name %></h3>
-      <% if @team.athletes.length == 0 %>
-        <%= render 'athletes/blank' %>
-      <% else %>
-        <% @team.athletes.each do |athlete| %>
-          <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
-        <% end %>
+  <div class="span8">
+    <%=@team.calculate_fantasy_points%>
+    <h3><%= @team.name %></h3>
+    <% if @team.athletes.length == 0 %>
+      <%= render 'athletes/blank' %>
+    <% else %>
+      <% @team.athletes.each do |athlete| %>
+        <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
       <% end %>
-    </div>
-
-    <div class="span3">
-      <%= render 'form' %>
-    </div>
-
+    <% end %>
   </div>
+
+  <div class="span3">
+    <%= render 'form' %>
+  </div>
+
 </div>

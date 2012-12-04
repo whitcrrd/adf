@@ -54,6 +54,15 @@ FactoryGirl.define do
   factory :user do |user|
     user.name {Faker::Name.name}
   end
+  
+  # factory :game do |game|
+  #   a = FactoryGirl.build(:team)
+  #   b = FactoryGirl.build(:team)
+  #   a.game_id = game.id
+  #   b.game_id = game.id
+  #   game.winner_id = a.id
+  #   game.loser_id = b.id
+  # end
 end
 
 

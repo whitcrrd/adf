@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes
+  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes, :game_date
 
   has_many :teams
   accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
@@ -10,11 +10,21 @@ class Game < ActiveRecord::Base
   delegate :user_name, :to => :loser, :prefix => true, :allow_nil => true # call game.loser_user_name to get name of loser
   
   scope :all_user_games, lambda { |input| joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
+  
+  # scope :today, where("game_time < ? and game_time >= ?", [Time.zone.now.end_of_day, Time.zone.now.beginning_of_day])
 
   MAX_TEAM_COUNT = 2
   def assign_results!
-    self.winner = teams.max { |t1, t2| t1.score <=> t2.score }
-    self.loser = teams.min { |t1, t2| t1.score <=> t2.score }
+    self.winner = teams.max { |t1, t2| t1.points <=> t2.points }
+    self.loser = teams.min { |t1, t2| t1.points <=> t2.points }
+  end
+  
+  def add_win_to_winner!
+    self.winner.user.add_win
+  end
+  
+  def add_loss_to_loser!
+    self.loser.user.add_loss
   end
 
   def full?

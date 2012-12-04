@@ -35,7 +35,7 @@ group :test, :development do
 end
 
 gem 'jquery-rails'
-
+gem 'simplecov', :require => false, :group => :test
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'nokogiri'

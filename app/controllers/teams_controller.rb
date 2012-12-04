@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
 
   before_filter :authorize, :only => [:show]
   def index
-    @teams = current_user.teams
+    @teams = Team.all_user_teams(current_user.id)
   end
 
   def new
@@ -45,9 +45,4 @@ class TeamsController < ApplicationController
       redirect_to :back
     end
   end
-
-  def destroy
-
-  end
-
 end

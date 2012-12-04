@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_filter :authorize, :only => [:edit, :update]
   def index
-    @games = current_user.games
+    @games = Game.all_user_games(current_user)
   end
 
   def show
