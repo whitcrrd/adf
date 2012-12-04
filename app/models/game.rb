@@ -1,10 +1,12 @@
 class Game < ActiveRecord::Base
-  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes, :game_date
+  attr_accessible :winner_id, :loser_id, :teams, :teams_attributes, :game_date, :slug
 
   has_many :teams
   accepts_nested_attributes_for :teams, :reject_if => proc { |attributes| attributes['name'].blank? }
   belongs_to :winner, :class_name => "Team"
   belongs_to :loser, :class_name => "Team"
+
+  before_create :set_url
   
   delegate :user_name, :to => :winner, :prefix => true, :allow_nil => true # call game.winner_user_name to get name of winner
   delegate :user_name, :to => :loser, :prefix => true, :allow_nil => true # call game.loser_user_name to get name of loser
@@ -29,5 +31,19 @@ class Game < ActiveRecord::Base
 
   def full?
     self.teams.count >= MAX_TEAM_COUNT
+  end
+
+  def to_param
+    self.slug
+  end
+
+  private
+
+  def format_url
+    ('a'..'z').to_a.shuffle.sample(10).join
+  end
+
+  def set_url
+    self.slug = format_url
   end
 end
