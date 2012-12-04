@@ -22,7 +22,7 @@
 		      <table class="table">
 		        <% @teams.each do |team|%>
 		        <tr> 
-		          <td><%= team.user.name %></td>
+		          <td><%= link_to "#{team.user.name}", user_path(team.user_id) %></td>
 		          <%# user.teams.each do |team|%>
 		          <td><b><%=team.points%></b> points</td>
 		          	<%#end%>
