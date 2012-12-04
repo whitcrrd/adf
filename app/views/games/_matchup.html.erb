@@ -18,7 +18,7 @@
       <%= game.full? ? game.teams[1].name : "TBD" %>
     </td>
     <td class="game_index_profile_pic">            
-      <img src="<%= game.full? ? game.teams[0].user.image_url : "/assets/empty_profile.png" %>">
+      <img src="<%= game.full? ? game.teams[1].user.image_url : "/assets/empty_profile.png" %>">
     </td>
   </tr>
   <tr class="game_index_lineup_row">
