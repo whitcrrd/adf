@@ -16,7 +16,7 @@
       <table>
       <tr>
       <% team.athletes.each do |athlete| %>
-        <%= athlete.full_name %>
+        <%= render "athletes/athlete_mini_card", :athlete => athlete %>
       <% end %>
       </tr>
       </table>
