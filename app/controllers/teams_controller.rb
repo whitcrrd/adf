@@ -43,6 +43,7 @@ class TeamsController < ApplicationController
     if @team.save
       render :json => {:success => true, :player_card => render_to_string(:partial => 'athletes/athlete_pic', :locals => {:athlete => athlete})}
     else
+      render :json => {:success => false}
     end
 
   end
