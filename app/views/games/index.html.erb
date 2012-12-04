@@ -1,8 +1,8 @@
 <div class="container centered">
-  <h2>Your Games</h2>
+  <h2>My Games</h2>
 
   <% @games.each do |game| %>
-    <div class="game_<%=game.id%>">
+    <div class="game_<%=game.id%> index_game">
       
       <%#= render 'matchup', :game => game %>
       <%= link_to render(:partial => 'matchup', :locals => {:game => game}), game_path(game) %>
