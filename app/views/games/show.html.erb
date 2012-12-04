@@ -1,8 +1,13 @@
 <div class="containter centered">
   
   <h3>Game for <%= @teams.first.date %></h3>
-  <!-- display both users and their teams -->
 
+  <% unless @game.full? %>
+    <div class="game_link">
+      Link to join game: <%= link_to edit_game_url(@game), edit_game_path(@game) %>
+    </div>
+  <% end %>
+  
   <div class="show_fb_pic">
     <img src="<%=@teams.first.user.image_url%>">
   </div>
