@@ -3,7 +3,7 @@
 // # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready( function() {
-  // $('position_PG').show();
+  // $('.position_PG').show();
   // $('.position_C').hide();
   // $('.position_SG').hide();
   // $('.position_SF').hide();
@@ -49,3 +49,48 @@ $(document).ready(function() {
     });
 
 });
+
+jQuery.fn.sortElements = (function(){
+    
+    var sort = [].sort;
+    
+    return function(comparator, getSortable) {
+        
+        getSortable = getSortable || function(){return this;};
+        
+        var placements = this.map(function(){
+            
+            var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+            
+            return function() {
+                
+                if (parentNode === this) {
+                    throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                }
+                parentNode.insertBefore(this, nextSibling);
+                parentNode.removeChild(nextSibling);
+            };
+            
+        });
+        return sort.call(this, comparator).each(function(i){
+            placements[i].call(getSortable.call(this));
+        });
+    };
+    
+})();
+
+// $document.ready(function(){
+
+
+// });
+
+// $('.player_table #players').sortElements(function(a, b){
+//     return $(a).text() > $(b).text() ? 1 : -1;
+// });
