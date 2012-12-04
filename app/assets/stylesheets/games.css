@@ -3,6 +3,7 @@
   margin: 0 auto;
 /*  background: #eee;*/
   text-align: center;
+/*  background: #0D4F8B;*/
 }
 
 .left_col_lg {
@@ -29,6 +30,7 @@ table.game_index_table {
   padding: 10px;
   margin: 20px 0;
   table-layout: fixed;
+  background: #fff;
 }
 
 td.game_index_header{
