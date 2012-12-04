@@ -24,5 +24,79 @@
   font-weight: bold;
   text-align: center;
   padding: 2px;
-//  padding: 10px;
 }
+
+.games_index_team {
+/*  background: #eee;*/
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  display: inline-block;
+  width: 840px;
+  margin-bottom: 20px;
+}
+
+.games_index_team_date {
+/*  margin-bottom: -20px;*/
+  text-align: right;
+  display: inline-block;
+  width: 860px;
+  font-weight: bold;
+  padding-right: 90px;
+}
+
+.games_index_team_name_box {
+  font-size: 20px;
+  font-weight: bold;
+  background: #000;
+  padding: 10px;
+  border: 10px;
+  display: inline-block;
+  width: 90%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.games_index_team_name {
+  text-decoration: none;
+  color: white;
+}
+
+.card_lineup_container {
+  text-align: center;
+  display: inline-block;
+  padding: 14px 0 6px 0;
+}
+
+.card_container {
+/*  
+  margin-left: -6px;
+  margin-right: -6px;*/
+  margin-top: -10px;
+  text-align: center;
+  display: inline-block;
+}
+
+/*div.card_container:nth-child(3n+1) {
+  -webkit-transform: rotate(-4deg);
+  -moz-transform: rotate(-4deg);
+}
+div.card_container:nth-child(3) {
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+}
+div.card_container:nth-child(5) {
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+}
+div.card_container div.player_card:hover {
+  -webkit-transform:scale(1.15);
+  -moz-transform:scale(1.15);
+  -o-transform:scale(1.15);
+  transform:scale(1.15);
+}
+div.card_container div.player_card {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}*/
