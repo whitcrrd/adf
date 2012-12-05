@@ -21,7 +21,7 @@ class GamesController < ApplicationController
       @new_team = @game.teams.create(:user_id => current_user.id, :name => current_user.name)
       redirect_to edit_team_path(@new_team)
     else
-      render :notice => "oops"
+      redirect_to root_url, :notice => "The game you tried to join is full. Please make a new game."
     end
   end
 
