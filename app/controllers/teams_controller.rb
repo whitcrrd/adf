@@ -1,7 +1,8 @@
 class TeamsController < ApplicationController
-
+  
   before_filter :authorize, :only => [:show, :edit]
   respond_to :json, :html
+
   def index
     @teams = Team.all_user_teams(current_user)
   end

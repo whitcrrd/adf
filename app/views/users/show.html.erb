@@ -1,3 +1,28 @@
+<div class="show-parent">
+	<span class="show-img"><img src="<%= current_user.image_url%>", alt="facebook profile pic", class="img-polaroid"></span>
+	<span class="show-img"><h2><%= current_user.name %></h2><br>
+	<h1 class="record">Record</h1>
+	<h1 class="record"><%= current_user.wins %>-<%= current_user.losses%></h1></span>
+</div>
+
+<% current_user.last_five_teams.each do |team| %>
+<div class="container-fluid container">
+  <div class="row-fluid">
+    <div class="span8">
+      <h3><%= team.name %></h3>
+	  <h3><%= team.id %></h3>
+      <table>
+      <tr>
+      <% team.athletes.each do |athlete| %>
+        <%= render "athletes/athlete_mini_card", :athlete => athlete %>
+      <% end %>
+      </tr>
+      </table>
+    </div>
+  </div>
+</div><br><br><br><br><br>
+<% end %>
+	
 <h3>User Show</h3>
 <%= current_user.id %><br>
 <%= current_user.name %><br>
@@ -5,4 +30,5 @@
 <div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div><br>
 
 <%= link_to "Share on Facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&redirect_uri=http://localhost:3000/users/#{current_user.id}", :class => "uibutton large confirm" %>
+
 
