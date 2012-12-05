@@ -1,0 +1,5 @@
+<%= form_for current_user.teams.build do |f| %>
+    Team Name: <%= f.text_field :name %>
+  <%= f.submit "Play", :class => 'btn btn-warning btn-large' %>
+<% end %>
+

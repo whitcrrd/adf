@@ -3,7 +3,7 @@
 
   <h2>Edit</h2>
 
-  <div class="span8">
+  <div class="span8 athletes">
     <%=@team.calculate_fantasy_points%>
     <h3><%= @team.name %></h3>
     <% if @team.athletes.length == 0 %>
@@ -15,8 +15,12 @@
     <% end %>
   </div>
 
+  <div id="update-container">
+
+  </div>
+
   <div class="span3">
-    <%= render 'form' %>
+    <%= render 'athletes_list', :athletes => @athletes %>
   </div>
 
 </div>
