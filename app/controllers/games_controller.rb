@@ -14,12 +14,14 @@ class GamesController < ApplicationController
     @game = Game.find_by_slug(params[:id])
     @athletes = []
     @ath_by_pos = []
-    @athletes = Athlete.top_by_position
+    @athletes = Athlete.all
+    # @athletes = Athlete.top_by_position
     @ath_by_pos = Athlete.top_tens_by_position
-    if @game.full?
-      render :notice => "game is full"
+    if @game.teams.count == 1 && (@game.teams.first.user_id != current_user.id)
+      @new_team = @game.teams.create(:user_id => current_user.id, :name => current_user.name)
+      redirect_to edit_team_path(@new_team)
     else
-      @new_team = @game.teams.build
+      render :notice => "oops"
     end
   end
 
