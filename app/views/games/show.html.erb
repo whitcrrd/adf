@@ -1,5 +1,5 @@
 <div class="containter centered">
-  
+
   <h3>Game for <%= @teams.first.date %></h3>
 
   <% unless @game.full? %>
@@ -7,53 +7,59 @@
       Link to join game: <%= link_to edit_game_url(@game), edit_game_path(@game) %>
     </div>
   <% end %>
-  
+
   <div class="show_fb_pic">
     <img src="<%=@teams.first.user.image_url%>">
   </div>
   <div class="show_name">
     <%= @teams.first.name %>
+    <% if @teams.first.user_id == current_user.id %>
+      <%= link_to "edit team", edit_team_path(@teams.first) %>
+    <% end %>
   </div>
   <div class="show_name">
     <% if @game.full? %>
       <%= @teams.last.name %>
+      <% if @teams.last.user_id == current_user.id %>
+        <%= link_to "edit team", edit_team_path(@teams.last) %>
+      <% end %>
     <% else %>
-      <%= link_to 'Join This Game', edit_game_path(@game) %>
+      <%= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-mini' %>
     <% end %>
   </div>
   <div class="show_fb_pic">
     <% if @game.full? %>
-      <img src="<%=@teams.last.user.image_url%>">
+
     <% else %>
       <img src="/assets/empty_profile.png" class="show_fb_pic_empty">
     <% end %>
   </div>
-  
+
   <!-- <br> -->
-  
+
   <div class="show_lineup">
     <% @teams.first.athletes.each do |athlete| %>
       <%#= render 'athletes/athlete_pic', :athlete => athlete %>
       <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.first.date %>
     <% end %>
   </div>
-  
+
   <div class="show_position">
     <% @teams.first.athletes.each do |athlete| %>
       <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.first.date %>
     <% end %>
     <%= render 'athletes/team_points_today', :team => @teams.first, :date => @teams.first.date %>
-    
+
   </div>
   <div class="show_position">
     <% if @game.full? %>
       <% @teams.last.athletes.each do |athlete| %>
         <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
-      <% end %>  
+      <% end %>
       <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
     <% end %>
   </div>
-  
+
   <div class="show_lineup">
     <% if @game.full? %>
       <% @teams.last.athletes.each do |athlete| %>
@@ -62,6 +68,13 @@
       <% end %>
     <% end %>
   </div>
+
+<%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?
+	app_id=209909909144385&link=http://localhost:3000/games/#{@game.id}&
+	picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&
+	caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily 
+	fantasy sports league for casual and serious sports fans.&
+	redirect_uri=http://localhost:3000/games/#{@game.id}" %>
 
 
 </div>

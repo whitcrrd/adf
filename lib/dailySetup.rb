@@ -3,7 +3,9 @@ require 'open-uri'
 
 module DailySetup
   # def self.set_teams_playing_today(url="http://scores.espn.go.com/nba/scoreboard")
-  def self.set_daily_schedule(url="http://scores.espn.go.com/nba/scoreboard")
+
+  def self.set_daily_schedule(url="http://scores.espn.go.com/nba/scoreboard?date=20121205")
+  # def self.set_daily_schedule(url="http://scores.espn.go.com/nba/scoreboard")
     doc = Nokogiri::HTML(open(url))
     doc.css('div.mod-nba-scorebox').each do |box_score_div|
       game_start_time = box_score_div.at_css('div.game-status p').text
@@ -12,6 +14,7 @@ module DailySetup
       game_time_min = game_start_time.split(":")[1].split(' ')[0].to_i/60.0 unless game_start_time == "Final"
       # move 3 hours to get to pst
       game_time_num = game_time_hour + game_time_min - 3 unless game_start_time == "Final"
+
       box_score_id = box_score_div.at_css('div.game-status p').attributes()['id'].value().split('-')[0]
       away_team = box_score_div.css('p.team-name').xpath('.//a')[0].attributes()["href"].value().split('/')[-1]
       home_team = box_score_div.css('p.team-name').xpath('.//a')[1].attributes()["href"].value().split('/')[-1]

@@ -1,15 +1,13 @@
 
-<div href="#" class="player_card">
-  <!-- <img src="/assets/empty_profile.png"> -->
-  <!-- <img src="http://i.cdn.turner.com/nba/nba/media/act_arron_afflalo.jpg"> -->
-  <!-- <div class="name"><%= athlete.first_name %> <%= athlete.last_name %></div> -->
+<div href="#" class="player_card" id="athlete_<%= athlete.id %>">
+  <div class="name"><%= athlete.first_name %> <%= athlete.last_name %></div>
   <img src="http://i.cdn.turner.com/nba/nba/media/act_<%= athlete.url_name%>.jpg">
   <div class="name"><%= athlete.full_name %></div>
   <div class="stats"><%= athlete.season_average.points %>ppg
                      <%= athlete.season_average.rebounds %>rpg
                      <%= athlete.season_average.assists %>apg</div>
   <div class='delete_button'>
-  <%#= link_to '', team_athlete_path(@team, athlete), class: 'btn-mini icon-remove', method: :delete, data: {confirm: 'Are you sure?'}%>
+  <%= link_to '', team_athlete_path(@team, athlete) , class: 'btn-mini icon-remove remove-athlete', method: :delete, :remote => true %>
 
   </div>
 </div>

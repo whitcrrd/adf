@@ -55,14 +55,24 @@ FactoryGirl.define do
     user.name {Faker::Name.name}
   end
   
-  # factory :game do |game|
-  #   a = FactoryGirl.build(:team)
-  #   b = FactoryGirl.build(:team)
-  #   a.game_id = game.id
-  #   b.game_id = game.id
-  #   game.winner_id = a.id
-  #   game.loser_id = b.id
-  # end
+  factory :game do |game|
+    game.winner_id {rand(0..100)}
+    game.loser_id {rand(0..100)}
+  end
+
+  factory :season_average do
+  end
+
+
+
+  factory :professional_team do
+    name "MyString"
+    playing_today false
+  end
+  
+  factory :current_stat do |stat|
+    stat.minutes {rand(0..48)}
+  end
 end
 
 

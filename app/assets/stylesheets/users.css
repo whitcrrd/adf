@@ -49,6 +49,21 @@ body{
   line-height: 40px;
 }
 
+.show-img {
+	float: left;
+	padding: 50px;
+}
+
+.show-parent{
+	width: 50%;
+	margin: 0 auto;
+}
+
+.records{
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
 /*Facebook button stying */
 
 .uibutton { 

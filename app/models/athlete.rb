@@ -24,7 +24,6 @@ class Athlete < ActiveRecord::Base
   def find_stats(team_id)
     @team_id = team_id
     team = Team.find(team_id)
-    # @stat = self.current_stats.find_by_game_date(self.teams.find_by_.date)
     @stat = self.current_stats.find_by_game_date(team.date)
   end
 
