@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     @athletes = Athlete.all
     # @athletes = Athlete.top_by_position
     @ath_by_pos = Athlete.top_tens_by_position
-    if @game.teams.count == 1 && (@game.teams.first.user_id != current_user.id)
+    if @game.teams.count == 1 && (@game.teams.first.user_id != current_user.id) && (current_user.id != nil)
       @new_team = @game.teams.create(:user_id => current_user.id, :name => current_user.name)
       redirect_to edit_team_path(@new_team)
     else
