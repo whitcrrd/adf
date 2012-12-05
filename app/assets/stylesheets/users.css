@@ -26,6 +26,10 @@ body{
   opacity: 0.9;
 }
 
+#leaderboard h2 {
+  text-align: center;
+}
+
 #leaderboard-align{
   padding-top: 10px;
 }
@@ -50,38 +54,38 @@ body{
 }
 
 .show-img {
-	float: left;
-	padding: 50px;
+  float: left;
+  padding: 50px;
 }
 
 .show-parent{
-	width: 50%;
-	margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .records{
-	width: 50%;
-	margin: 0 auto;
-	text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 /*Facebook button stying */
 
-.uibutton { 
-    position: relative; 
+.uibutton {
+    position: relative;
     z-index: 1;
-    overflow: visible; 
-    display: inline-block; 
-    padding: 0.3em 0.6em 0.375em; 
-    border: 1px solid #999; 
+    overflow: visible;
+    display: inline-block;
+    padding: 0.3em 0.6em 0.375em;
+    border: 1px solid #999;
     border-bottom-color: #888;
     margin: 0;
-    text-decoration: none; 
+    text-decoration: none;
     text-align: center;
-    font: bold 11px/normal 'lucida grande', tahoma, verdana, arial, sans-serif; 
-    white-space: nowrap; 
-    cursor: pointer; 
+    font: bold 11px/normal 'lucida grande', tahoma, verdana, arial, sans-serif;
+    white-space: nowrap;
+    cursor: pointer;
     /* outline: none; */
-    color: #333; 
+    color: #333;
     background-color: #eee;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f6f6), to(#e4e4e3));
     background-image: -moz-linear-gradient(#f5f6f6, #e4e4e3);
@@ -92,8 +96,8 @@ body{
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
     /* IE hacks */
-    zoom: 1; 
-    *display: inline; 
+    zoom: 1;
+    *display: inline;
 }
 
 .uibutton:hover,
