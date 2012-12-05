@@ -1,7 +1,11 @@
 class CurrentStat < ActiveRecord::Base
-  attr_accessible :minutes, :field_goals, :three_pointers, :free_throws, :offensive_rebounds, :defensive_rebounds, :rebounds, :assists, :steals, :blocks, :personal_fouls, :plus_minus, :points, :turnovers, :game_date, :athlete_id, :athlete
+  attr_accessible :minutes, :field_goals, :three_pointers, :free_throws, :offensive_rebounds, :defensive_rebounds, :rebounds, :assists, :steals, :blocks, :personal_fouls, :plus_minus, :points, :turnovers, :game_date, :athlete_id, :athlete, :fantasy_points
 
   belongs_to :athlete
+  
+  def set_fantasy_points!
+    points + rebounds + assists
+  end
 
 end
 

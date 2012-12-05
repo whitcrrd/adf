@@ -5,8 +5,6 @@ module NbaLiveStat
 
   def self.get_teams_playing_and_call_stats
     now = Time.now.utc + Time.zone_offset('PST')
-    puts "in get teams playing and call stats"
-    puts now
     now_hour = now.strftime("%H").to_i
     now_min = now.strftime("%M").to_i/60.0
     now_num = now_hour + now_min
@@ -36,6 +34,7 @@ module NbaLiveStat
       date_today -= 1 if (Time.now.strftime("%H").to_i) < 9
       current_stat = athlete.current_stats.find_by_game_date(date_today) || athlete.current_stats.build(:game_date => date_today)
       current_stat.update_attributes(these_stats)
+      current_stat.set_fantasy_points!
     end
   end
 
