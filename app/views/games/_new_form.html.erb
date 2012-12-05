@@ -1,0 +1,9 @@
+<%= form_for @game do |game_form| %>
+  <%= game_form.fields_for :teams, @new_team do |f| %>
+    Team Name: <%= f.text_field :name %>
+    <%= f.hidden_field :game_id, :value => @game.id %>
+  <% end %>
+
+  <%= game_form.submit %>
+<% end %>
+

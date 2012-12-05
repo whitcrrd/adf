@@ -23,8 +23,6 @@
 </div><br><br><br><br><br>
 <% end %>
 	
-	
-<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div><br>
 <%= link_to "Share On Facebook", "https://www.facebook.com/dialog/feed?
   app_id=209909909144385&
   link=http://localhost:3000/games/#{@game.id}&
@@ -33,3 +31,12 @@
   caption=Make your team and accept my challenge.&
   description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans&
   redirect_uri=http://localhost:3000"%>
+<h3>User Show</h3>
+<%= current_user.id %><br>
+<%= current_user.name %><br>
+
+<div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/users/#{current_user.id}" data-send="false" data-width="450" data-show-faces="true"></div><br>
+
+<%= link_to "Share on Facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&redirect_uri=http://localhost:3000/users/#{current_user.id}", :class => "uibutton large confirm" %>
+
+

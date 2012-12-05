@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+$(function() {
+  $('form[data-update-target]').live('ajax:success', function(evt, data) {
+    var target = $(this).data('update-target');
+    $('#' + target).html(data);
+  });
+});

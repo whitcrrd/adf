@@ -1,10 +1,12 @@
 class AthletesController < ApplicationController
   before_filter :authorize
-  
+
   def destroy
-    @team = current_user.teams.find(params[:team_id])
+    @team = Team.find(params[:team_id])
     @team.athletes.destroy(params[:id])
-    redirect_to :back
+    # REVIEW: maybe replace with a descriptive method like remove_athlete
+
+    render :json => {:success => true }
   end
 
 end
