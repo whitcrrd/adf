@@ -1,5 +1,6 @@
+<!-- dom_id(game) => 'game_<id>' -->
 <div class="game_<%=game.id%> games_index">
-  
+
   <div class="games_index_fb_pic">
     <img src="<%=game.teams[0].user.image_url%>">
   </div>
@@ -15,7 +16,7 @@
   <div class="games_index_fb_pic">
     <img src="<%= game.full? ? game.teams[1].user.image_url : "/assets/empty_profile.png" %>">
   </div>
-  
+
   <div class="games_index_home_lineup">
     <% game.teams[0].athletes.each do |athlete| %>
       <img src="http://www.nba.com/media/playerfile/<%=athlete.url_name%>.jpg" title="<%=athlete.full_name%>">
@@ -28,6 +29,6 @@
       <% game.teams[1].athletes.each do |athlete| %>
         <img src="http://www.nba.com/media/playerfile/<%=athlete.url_name%>.jpg" title="<%=athlete.full_name%>">
       <% end %>
-    <% end %>      
+    <% end %>
   </div>
 </div>

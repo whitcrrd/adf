@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    # REVIEW: Move to before filter
     @game = Game.find_by_slug(params[:id])
     @teams = @game.teams
   end
@@ -12,7 +13,7 @@ class GamesController < ApplicationController
   def edit
     @game = Game.find_by_slug(params[:id])
     @athletes = []
-    @ath_by_pos = [] 
+    @ath_by_pos = []
     @athletes = Athlete.top_by_position
     @ath_by_pos = Athlete.top_tens_by_position
     if @game.full?
@@ -25,9 +26,11 @@ class GamesController < ApplicationController
   def update
     @game = Game.find_by_slug(params[:id])
     if @game.update_attributes params[:game]
-      @team = @game.teams.last
-      if @team
+      # REVIEW: add a method to grab the specific team you want
+      # e.g. @game.rival_team
+      if @team = @game.teams.last
         @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
+        # @team.save DO YOU NEED THIS?
       end
       redirect_to @game
     else

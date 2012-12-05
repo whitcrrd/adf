@@ -2,19 +2,21 @@
   <h2>My Teams</h2>
 
   <% @teams.each do |team| %>
-  
+    <!-- REVIEW: move to partial _team.html.erb -->
     <div class="teams_index_team_date">
       <%= team.date.inspect %>
     </div>
     <div class="teams_index_team">
       <div class="teams_index_team_name_box">
+        <!-- REVIEW: move conditionals out of views and into a helper -->
+        <!-- e.g. helper method named team_name_or_link -->
         <% if team.date == Date.today %>
           <%= link_to team.name, edit_team_path(team.id), :class => "teams_index_team_name" %>
         <% else %>
           <div class="teams_index_team_name"><%= team.name %></div>
         <% end %>
       </div>
-      <div class="card_lineup_container">    
+      <div class="card_lineup_container">
         <div class="teams_index_team_lineup">
           <% team.athletes.each do |athlete| %>
             <div class="card_container">
@@ -24,6 +26,6 @@
         </div>
       </div>
     </div>
-  
+
   <% end %>
 </div>
