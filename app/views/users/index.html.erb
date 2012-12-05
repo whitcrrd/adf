@@ -5,12 +5,16 @@
       <div class="span6" id="instruction-align">
         <div class="well" id="instruction">
           <h2 id="play">How to play</h2>
-          <p id="instruction-p"> Hello there,<br>
-            The premise of this game is simple, pick a team each day that you think will acheive the best score. After you are done creating your team, challenge your friends and see who is the best fantasy player. Click the play button below to start....Good Luck!
+          <p id="instruction-p"> Hey there,<br>
+            The premise of this game is simple, pick a team each day that you think will acheive the best score. After you are done creating your team, challenge your friends and see who is the best fantasy player. Click the button below to start....Good Luck!
           </p>
           <% if current_user %>
           <div id="btn-center">
             <%= render 'teams/new_form' %>
+          </div>
+          <% else %>
+          <div id="btn-center">
+            <%= link_to "Sign in", "/auth/facebook", :class => 'btn btn-warning btn-large' %>
           </div>
           <% end %>
               <div class="fb-like" data-href="https://dry-gorge-5283.herokuapp.com/" data-send="false" data-width="450" data-show-faces="true"></div>
@@ -19,7 +23,7 @@
       </div>
       <div class="span6" id="leaderboard-align">
         <div class="well" id="leaderboard">
-          <h2><u>Yesterday's Leaderboard</u></h2>
+          <h2>Today's Leaderboard</h2>
           <table class="table">
             <% @teams.each do |team|%>
             <tr>
