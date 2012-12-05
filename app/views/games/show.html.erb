@@ -70,11 +70,11 @@
   </div>
 
 <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?
-	app_id=209909909144385&link=http://localhost:3000/games/#{@game.id}&
+	app_id=209909909144385&link=http://localhost:3000/games/#{@game.slug}&
 	picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&
 	caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily 
 	fantasy sports league for casual and serious sports fans.&
-	redirect_uri=http://localhost:3000/games/#{@game.id}" %>
+	redirect_uri=http://localhost:3000/games/#{@game.slug}" %>
 
 
 </div>
