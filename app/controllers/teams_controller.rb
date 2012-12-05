@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
 
-  before_filter :authorize, :only => [:show]
+  before_filter :authorize, :only => [:show, :index]
   def index
     @teams = Team.all_user_teams(current_user.id)
   end
@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
   end
 
   def create
+    puts params
     @team = current_user.teams.create
     # @team.date = (Time.now.utc + Time.zone_offset('EST')).to_date
     @team.athlete_ids = params[:athlete_ids].keys if params[:athlete_ids]
