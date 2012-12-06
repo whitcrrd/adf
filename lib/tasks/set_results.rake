@@ -1,4 +1,4 @@
-require 'DailyResults'
+require 'dailyResults'
 
 namespace :db do 
   desc "set the results for each of the games from today"
