@@ -74,7 +74,14 @@
           <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
         <% end %>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
+<%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?
+	app_id=209909909144385&link=http://www.alldayfantasy.com/games/#{@game.slug}&
+	picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&
+	caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily 
+	fantasy sports league for casual and serious sports fans.&
+	redirect_uri=http://www.alldayfantasy.com/games/#{@game.slug}" %>
 
 </div>
