@@ -208,11 +208,14 @@ div.show_position {
   font-weight: bold;
   text-align: center;
   width: 80px;
-  margin: -20px -4px 0 -4px;
-  padding: 0;
+/*  margin: -20px -4px 0 -4px;*/
+  padding: -20px -4px 0 -4px;
+  margin-top: -20px;
+/* padding: 0;*/
   display: inline-block;
 /*  vertical-align: bottom;*/
   vertical-align: top;
+
 }
 div.join_game {
   width: 368px;
