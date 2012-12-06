@@ -12,18 +12,18 @@ class Team < ActiveRecord::Base
 
   before_create :set_date
   after_create :create_game_if_not_present!
-  validate :athletes, :length => {:is => 5, :message => "Must have 5 athletes per team"}#, :on => :create
-  validate :must_have_5_unique_positions
+  validate :athletes, :length => {:maximum => 5, :message => "Must have 5 athletes per team"}, :on => :update
+  validate :must_have_5_unique_positions, :on => :update
 
   scope :all_user_teams, lambda { |input| where("user_id = ?", input).order("created_at DESC") }
   scope :all_teams_today, select("*").where("date = ?", Date.today)
-  
+
   # REVIEW: separate methods into private and public
 
   def athlete_ids=(athlete_ids)
     self.athletes += Athlete.find_all_by_id(athlete_ids)
   end
-  
+
   def set_fantasy_points!
     self.points = calculate_fantasy_points
     self.save
@@ -61,6 +61,34 @@ class Team < ActiveRecord::Base
     if positions.uniq.length != positions.length
       errors.add(:team, "must have a Point Guard, Center, Shooting Guard, Power Forward, and Small Forward")
     end
+  end
+
+  # def must_have_5_unique_positions
+  #   positions = self.athletes.map(&:position)
+  #   (positions.length < 2) if positions
+  # end
+
+  def save_and_swap_athletes_or_add_athlete(new_player)
+    taken_positions = self.athletes.map(&:position)
+    if taken_positions.include?(new_player.position)
+      old_player = self.athletes.find_by_position(new_player.position)
+      self.athletes.delete(old_player)
+      self.athletes << new_player
+    else
+      self.athletes << new_player
+    end
+
+  end
+
+  def position_available?(new_player)
+    positions = self.athletes.map(&:position)
+    return true unless positions.include?(new_player.position)
+  end
+
+  def position_already_taken?(new_player)
+    positions = self.athletes.map(&:position)
+    return true if positions.include?(new_player.position)
+    false
   end
 
   def set_date

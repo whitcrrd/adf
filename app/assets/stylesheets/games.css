@@ -6,6 +6,17 @@
 /*  background: #0D4F8B;*/
 }
 
+.box_score {
+  border: 1px solid #ccc;
+  width: 900px;
+  display: inline-block;
+  padding: 20px 10px;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  background: #fff;
+}
+
 .left_col_lg {
   width: 680px;
   height: 100%;
@@ -104,6 +115,7 @@ tr.game_index_lineup_row {
   width: 900px;
   border: 1px solid #ccc;
   border-radius: 15px;
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 .games_index_team_date {
   text-align: right;
@@ -172,7 +184,7 @@ div.show_fb_pic {
 /*  background: #ddd; */
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  text-align: middle;
   width: 50px;
   padding: 10px;
   display: inline-block;
@@ -208,10 +220,21 @@ div.show_position {
   font-weight: bold;
   text-align: center;
   width: 80px;
-  margin: -20px -4px 0 -4px;
-  padding: 0;
+/*  margin: -20px -4px 0 -4px;*/
+  padding: -20px -4px 0 -4px;
+  margin-top: -20px;
+/* padding: 0;*/
   display: inline-block;
-  vertical-align: bottom;
+/*  vertical-align: bottom;*/
+  vertical-align: top;
+
+}
+div.join_game {
+  width: 368px;
+  margin: -20px 0;
+  padding: 120px 0;
+  display: inline-block;
+/*  background: #eee;*/
 }
 
 img.show_fb_pic_empty {
@@ -224,3 +247,14 @@ div.game_link {
   padding-bottom: 16px;
 }
 
+div.fb_share_link {
+  text-align: center;
+  width: 950px;
+  padding-bottom: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.button_right {
+  float: right;
+}

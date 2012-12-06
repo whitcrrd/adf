@@ -15,7 +15,7 @@
           <td id="player_<%=athlete.id%>" class="player_text" data-content="<%= render :partial =>'player_card', :locals => {:athlete => athlete}%>" data-html="true" data-title="Season Averages" rel="popover">
             <%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete' %>
           </td>
-          <td class="player_text">
+          <td class="player_text <%= athlete.position %>">
             <%= athlete.position %>
           </td>
           <td class="player_text">

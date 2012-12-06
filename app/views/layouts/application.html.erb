@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--   <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'> -->
-  <title>Adf</title>
+  <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+  <title>ADF - Daily Fantasy Sports</title>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -28,8 +29,8 @@
             <li><a href="/games">My Games</a></li>
           <% end %>
 
-          <li><a href="#">History</a></li>
-          <li><a href="#">Account</a></li>
+          <!-- <li><a href="#">History</a></li> -->
+          <!-- <li><a href="#">Account</a></li> -->
         </ul>
 
         <ul class="nav pull-right">
@@ -47,6 +48,12 @@
   <div id="user_nav" class="container">
 
   </div>
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:error] %>
+    <div class="alert alert-failure"><%= flash[:error] %></div>
+  <% end %>
 
 <%= yield %>
 

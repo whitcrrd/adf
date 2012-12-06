@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-
+gem 'pg'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -43,6 +43,7 @@ gem 'whenever', require: false
 
 group :production do
   gem 'pg'
+  gem 'clockwork'
 end
 group :development, :test do
   gem 'sqlite3'
