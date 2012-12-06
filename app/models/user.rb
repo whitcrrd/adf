@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :teams
   has_many :games, :through => :teams
 
-scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?", input).order("teams.points desc").uniq } #SCOTT TEST THIS PLEASE
+scope :todays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?", input).order("teams.points desc").limit(15).uniq } #SCOTT TEST THIS PLEASE
 
 
 
