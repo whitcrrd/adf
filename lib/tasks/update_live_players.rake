@@ -1,4 +1,4 @@
-require 'NbaLiveStat'
+require 'nbaLiveStat'
 
 namespace :db do
   desc "update current playing players with their stats"
