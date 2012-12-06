@@ -31,6 +31,7 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'quiet_assets'
+  gem 'pg'
 end
 
 gem 'jquery-rails'

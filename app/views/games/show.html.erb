@@ -2,9 +2,9 @@
 
   <h3>Game for <%= @teams.first.date %></h3>
 
-  <% unless @game.full? %>
+  <% if @game.full? %>
     <div class="game_link">
-      Link to join game: <%= link_to edit_game_url(@game), edit_game_path(@game) %>
+      Link to share this game: <%= link_to game_url(@game), game_path(@game) %>
     </div>
   <% end %>
 
