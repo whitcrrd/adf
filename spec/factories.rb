@@ -72,6 +72,9 @@ FactoryGirl.define do
   
   factory :current_stat do |stat|
     stat.minutes {rand(0..48)}
+    stat.points {rand(0..50)}
+    stat.rebounds {rand(0..20)}
+    stat.assists {rand(0..15)}
   end
 end
 
