@@ -1,6 +1,6 @@
 require 'nbaSeasonAverage'
 require 'dailySetup'
-require 'DailyResults'
+require 'dailyResults'
 
 desc "add every nba team, then add players and their stats to the first"
 task :test_pop => :environment do
