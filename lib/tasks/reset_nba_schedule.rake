@@ -1,4 +1,4 @@
-require 'DailySetup'
+require 'dailySetup'
 
 namespace :db do
   desc "resets box score ids and game times to nil for every team"
