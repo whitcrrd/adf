@@ -3,7 +3,10 @@ var Team = {
     $('#position_list').on('change', Team.showByPosition);
     $('.athletes').on('ajax:success', 'a.remove-athlete', Team.removeAthlete);
     $('.athletes-list').on('ajax:success', 'a.add-athlete', Team.addAthlete);
-  },
+    $('.player_table tr td').popover({
+      trigger: 'hover'
+    });
+   },
 
   showByPosition: function(event){
     var filter = event.target.value;
@@ -28,8 +31,8 @@ var Team = {
   addAthlete: function(event, data) {
     $('.athletes').append(data.player_card);
     $(this).closest('tr').hide();
-  }
-
+  },
 };
 
 $(document).ready(function() { Team.init(); });
+
