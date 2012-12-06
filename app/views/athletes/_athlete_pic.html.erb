@@ -6,7 +6,7 @@
   <div class="stats"><%= athlete.season_average.points %>ppg
                      <%= athlete.season_average.rebounds %>rpg
                      <%= athlete.season_average.assists %>apg</div>
-  <div class='delete_button'>
+  <div class='delete_button card-position_<%=athlete.position%>'>
   <%= link_to '', team_athlete_path(@team, athlete) , class: 'btn-mini icon-remove remove-athlete', method: :delete, :remote => true %>
 
   </div>

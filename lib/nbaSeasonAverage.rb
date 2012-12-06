@@ -28,21 +28,24 @@ module NbaSeasonAverage
   end
 
   def self.stats_from_row(stats_row)
+    full_name = stats_row.css('td')[0].xpath('.//a')[0].text
+    stats = stats_row.css('td').collect(&:text)
     {
-     :full_name => stats_row.css('td')[0].xpath('.//a')[0].text,
-     :position => stats_row.css('td')[0].text.split(',')[-1].strip,
-     :games => stats_row.css('td')[1].text,
-     :games_started => stats_row.css('td')[2].text,
-     :minutes => stats_row.css('td')[3].text,
-     :points => stats_row.css('td')[4].text,
-     :offensive_rebounds => stats_row.css('td')[5].text,
-     :defensive_rebounds => stats_row.css('td')[6].text,
-     :rebounds => stats_row.css('td')[7].text,
-     :assists => stats_row.css('td')[8].text,
-     :steals => stats_row.css('td')[9].text,
-     :blocks => stats_row.css('td')[10].text,
-     :turnovers => stats_row.css('td')[11].text,
-     :personal_fouls => stats_row.css('td')[12].text
+     :full_name => full_name,
+     :position => stats[0].split(',')[-1].strip[0..1],
+     # :position => stats_row.css('td')[0].text.split(',')[-1].strip,
+     :games => stats[1],
+     :games_started => stats[2],
+     :minutes => stats[3],
+     :points => stats[4],
+     :offensive_rebounds => stats[5],
+     :defensive_rebounds => stats[6],
+     :rebounds => stats[7],
+     :assists => stats[8],
+     :steals => stats[9],
+     :blocks => stats[10],
+     :turnovers => stats[11],
+     :personal_fouls => stats[12]
     }
   end
 
