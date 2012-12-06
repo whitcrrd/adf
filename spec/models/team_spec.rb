@@ -40,5 +40,27 @@ describe Team do
   context "delegate" do
     it { should respond_to(:name)}
   end
+  
+  describe "#total_fantasy_points" # do
+  #     athlete1 = FactoryGirl.create(:athlete)
+  #     athlete2 = FactoryGirl.create(:athlete)    
+  #     athlete1.fantasy_points = 10
+  #     athlete2.fantasy_points = 20
+  #     team.total_fantasy_points.should eq 30
+  #   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
