@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
-    @athletes = Athlete.all
+    @athletes = Athlete.top_by_position
     @ath_by_pos = Athlete.top_tens_by_position
     # REVIEW: move to before filter for #edit, #new
   end

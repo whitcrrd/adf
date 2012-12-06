@@ -43,6 +43,7 @@ gem 'whenever', require: false
 
 group :production do
   gem 'pg'
+  gem 'clockwork'
 end
 group :development, :test do
   gem 'sqlite3'
