@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
   delegate :user_name, :to => :winner, :prefix => true, :allow_nil => true # call game.winner_user_name to get name of winner
   delegate :user_name, :to => :loser, :prefix => true, :allow_nil => true # call game.loser_user_name to get name of loser
   
-  scope :all_user_games, lambda { |input| joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
+  scope :all_user_games, lambda { |input| select('games.*, teams.created_at').joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
   
   scope :all_games_today, select("*").joins(:teams).where("teams.date = ?", Date.today).uniq
   
