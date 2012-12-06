@@ -1,4 +1,4 @@
-require 'DailySetup'
+require 'dailySetup'
 
 namespace :db do
   desc "change the teams playing today to true"
