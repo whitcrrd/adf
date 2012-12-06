@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
   
   before_filter :authorize, :only => [:show, :edit]
   respond_to :json, :html
+  
+  before_filter :max_five_players, :only => :update
 
   def index
     @teams = Team.all_user_teams(current_user)
@@ -50,4 +52,12 @@ class TeamsController < ApplicationController
     end
 
   end
+  
+  def max_five_players
+    @team = Team.find(params[:id])
+    if @team.athletes.count >= 5
+       render :back, :notice => "you must drop a player before you try to add another"
+    end
+  end
+  
 end
