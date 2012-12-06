@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204184837) do
+ActiveRecord::Schema.define(:version => 20121205034210) do
 
   create_table "athletes", :force => true do |t|
     t.string   "first_name"
@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(:version => 20121204184837) do
     t.string   "plus_minus"
     t.integer  "points"
     t.integer  "athlete_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "turnovers"
     t.date     "game_date"
+    t.integer  "fantasy_points",     :default => 0
   end
 
   create_table "games", :force => true do |t|

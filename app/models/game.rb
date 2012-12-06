@@ -13,12 +13,17 @@ class Game < ActiveRecord::Base
   
   scope :all_user_games, lambda { |input| select('games.*, teams.created_at').joins(:teams).where("teams.user_id = ?", input).order("teams.created_at desc").uniq }
   
+  scope :all_games_today, select("*").joins(:teams).where("teams.date = ?", Date.today).uniq
+  
   # scope :today, where("game_time < ? and game_time >= ?", [Time.zone.now.end_of_day, Time.zone.now.beginning_of_day])
 
   MAX_TEAM_COUNT = 2
   def assign_results!
-    self.winner = teams.max { |t1, t2| t1.points <=> t2.points }
-    self.loser = teams.min { |t1, t2| t1.points <=> t2.points }
+    winner = teams.max { |t1, t2| t1.points <=> t2.points }
+    loser = teams.min { |t1, t2| t1.points <=> t2.points }
+    update_attributes(:winner_id => winner.id, :loser_id => loser.id) # if individual need to be set
+    add_win_to_winner!
+    add_loss_to_loser!
   end
   
   def add_win_to_winner!

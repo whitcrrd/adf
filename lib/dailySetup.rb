@@ -9,8 +9,10 @@ module DailySetup
       game_start_time = box_score_div.at_css('div.game-status p').text
       game_time_hour = game_start_time.split(":")[0].to_i
       game_time_hour = game_time_hour + 12 unless game_time_hour == 12
-      game_time_min = 0#game_start_time.split(":")[1].split(' ')[0].to_i/60.0 unless game_start_time == "Final"
-      game_time_num = game_time_hour + game_time_min unless game_start_time == "Final"
+      game_time_min = game_start_time.split(":")[1].split(' ')[0].to_i/60.0 unless game_start_time == "Final"
+      # move 3 hours to get to pst
+      game_time_num = game_time_hour + game_time_min - 3 unless game_start_time == "Final"
+
       box_score_id = box_score_div.at_css('div.game-status p').attributes()['id'].value().split('-')[0]
       away_team = box_score_div.css('p.team-name').xpath('.//a')[0].attributes()["href"].value().split('/')[-1]
       home_team = box_score_div.css('p.team-name').xpath('.//a')[1].attributes()["href"].value().split('/')[-1]

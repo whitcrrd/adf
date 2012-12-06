@@ -4,7 +4,7 @@ require 'open-uri'
 module NbaLiveStat
 
   def self.get_teams_playing_and_call_stats
-    now = Time.now.utc + Time.zone_offset('EST')
+    now = Time.now.utc + Time.zone_offset('PST')
     now_hour = now.strftime("%H").to_i
     now_min = now.strftime("%M").to_i/60.0
     now_num = now_hour + now_min
@@ -30,10 +30,11 @@ module NbaLiveStat
       these_stats = stats_from_row(row)
       ath_full_name = these_stats.delete(:full_name)
       athlete = Athlete.find_or_create_by_full_name(:full_name => ath_full_name)
-      date_today = (Time.now.utc + Time.zone_offset('EST')).to_date
-      date_today -= 1 if (Time.now.strftime("%H").to_i) < 12
+      date_today = (Time.now.utc + Time.zone_offset('PST')).to_date
+      date_today -= 1 if (Time.now.strftime("%H").to_i) < 9
       current_stat = athlete.current_stats.find_by_game_date(date_today) || athlete.current_stats.build(:game_date => date_today)
       current_stat.update_attributes(these_stats)
+      current_stat.set_fantasy_points!
     end
   end
 
