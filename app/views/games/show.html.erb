@@ -14,7 +14,7 @@
   <div class="show_name">
     <%= @teams.first.name %>
     <% if @teams.first.user_id == current_user.id %>
-      <%= link_to "edit team", edit_team_path(@teams.first) %>
+      <%= link_to "Edit", edit_team_path(@teams.first), :class => "button_right btn btn-mini btn-danger" %>
     <% end %>
   </div>
   <div class="show_name">
@@ -24,7 +24,8 @@
         <%= link_to "edit team", edit_team_path(@teams.last) %>
       <% end %>
     <% else %>
-      <%= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-mini' %>
+      TBD
+      <%#= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-mini' %>
     <% end %>
   </div>
   <div class="show_fb_pic">
@@ -51,23 +52,29 @@
     <%= render 'athletes/team_points_today', :team => @teams.first, :date => @teams.first.date %>
 
   </div>
-  <div class="show_position">
-    <% if @game.full? %>
-      <% @teams.last.athletes.each do |athlete| %>
-        <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
+  
+  <% if !@game.full? %>
+    <div class="join_game">
+      <%= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-large' %>
+    </div>
+  <% else %>
+    <div class="show_position">
+      <% if @game.full? %>
+        <% @teams.last.athletes.each do |athlete| %>
+          <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
+        <% end %>
+        <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
       <% end %>
-      <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="show_lineup">
-    <% if @game.full? %>
-      <% @teams.last.athletes.each do |athlete| %>
-        <%#= render 'athletes/athlete_pic', :athlete => athlete %>
-        <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
+    <div class="show_lineup">
+      <% if @game.full? %>
+        <% @teams.last.athletes.each do |athlete| %>
+          <%#= render 'athletes/athlete_pic', :athlete => athlete %>
+          <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-
+    </div>
+  <% end %>
 
 </div>
