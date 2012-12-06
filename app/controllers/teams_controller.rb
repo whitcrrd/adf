@@ -10,9 +10,8 @@ class TeamsController < ApplicationController
   def new
     @team = Team.new
     @team.name = "#{current_user.name}'s Team"
-    # @athletes = Athlete.top_by_position
-    @athletes = Athlete.all
-    @ath_by_pos = Athlete.all
+    @athletes = Athlete.top_by_position
+    @ath_by_pos = Athlete.top_tens_by_position
 
     # @ath_by_pos = Athlete.top_tens_by_position
     # REVIEW: add explanation
