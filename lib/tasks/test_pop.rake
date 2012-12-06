@@ -1,4 +1,4 @@
-require 'NbaSeasonAverage'
+require 'nbaSeasonAverage'
 
 namespace :db do
   desc "add every nba team, then add players and their stats to the first"
