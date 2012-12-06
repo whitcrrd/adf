@@ -3,8 +3,8 @@
   <h3>Game for <%= @teams.first.date %></h3>
 
   <% if @game.full? %>
-    <div class="game_link">
-      Link to share this game: <%= link_to game_url(@game), game_path(@game) %>
+    <div class="fb_share_link">
+      <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&link=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}&picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans.&redirect_uri=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}", :class => "uibutton large confirm"  %>
     </div>
   <% end %>
 
@@ -14,7 +14,7 @@
   <div class="show_name">
     <%= @teams.first.name %>
     <% if @teams.first.user_id == current_user.id %>
-      <%= link_to "edit team", edit_team_path(@teams.first) %>
+      <%= link_to "Edit", edit_team_path(@teams.first), :class => "button_right btn btn-mini btn-danger" %>
     <% end %>
   </div>
   <div class="show_name">
@@ -24,12 +24,13 @@
         <%= link_to "edit team", edit_team_path(@teams.last) %>
       <% end %>
     <% else %>
-      <%= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-mini' %>
+      TBD
+      <%#= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-mini' %>
     <% end %>
   </div>
   <div class="show_fb_pic">
     <% if @game.full? %>
-
+      <img src="<%=@teams.last.user.image_url%>">
     <% else %>
       <img src="/assets/empty_profile.png" class="show_fb_pic_empty">
     <% end %>
@@ -51,20 +52,27 @@
     <%= render 'athletes/team_points_today', :team => @teams.first, :date => @teams.first.date %>
 
   </div>
-  <div class="show_position">
-    <% if @game.full? %>
-      <% @teams.last.athletes.each do |athlete| %>
-        <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
+  
+  <% if !@game.full? %>
+    <div class="join_game">
+      <%= link_to 'Join This Game', edit_game_path(@game), class: 'btn btn-warning btn-large' %>
+    </div>
+  <% else %>
+    <div class="show_position">
+      <% if @game.full? %>
+        <% @teams.last.athletes.each do |athlete| %>
+          <%= render 'athletes/athlete_points_today', :athlete => athlete, :date => @teams.last.date %>
+        <% end %>
+        <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
       <% end %>
-      <%= render 'athletes/team_points_today', :team => @teams.last, :date => @teams.last.date %>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="show_lineup">
-    <% if @game.full? %>
-      <% @teams.last.athletes.each do |athlete| %>
-        <%#= render 'athletes/athlete_pic', :athlete => athlete %>
-        <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
+    <div class="show_lineup">
+      <% if @game.full? %>
+        <% @teams.last.athletes.each do |athlete| %>
+          <%#= render 'athletes/athlete_pic', :athlete => athlete %>
+          <%= render 'athletes/athlete_pic_small', :athlete => athlete, :date => @teams.last.date %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -75,6 +83,5 @@
 	caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily 
 	fantasy sports league for casual and serious sports fans.&
 	redirect_uri=http://www.alldayfantasy.com/games/#{@game.slug}" %>
-
 
 </div>

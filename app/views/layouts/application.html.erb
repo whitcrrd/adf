@@ -28,8 +28,8 @@
             <li><a href="/games">My Games</a></li>
           <% end %>
 
-          <li><a href="#">History</a></li>
-          <li><a href="#">Account</a></li>
+          <!-- <li><a href="#">History</a></li> -->
+          <!-- <li><a href="#">Account</a></li> -->
         </ul>
 
         <ul class="nav pull-right">
@@ -47,12 +47,12 @@
   <div id="user_nav" class="container">
 
   </div>
-	<% if flash[:notice] %>
-		<div class="alert alert-success"><%= flash[:notice] %></div>
-	<% end %>
-	<% if flash[:error] %>
-		<div class="alert alert-failure"><%= flash[:error] %></div>
-	<% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:error] %>
+    <div class="alert alert-failure"><%= flash[:error] %></div>
+  <% end %>
 
 <%= yield %>
 
