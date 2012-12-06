@@ -4,7 +4,7 @@
 
   <% if @game.full? %>
     <div class="fb_share_link">
-      <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&link=http://www.alldayfantasy.com/games/#{@game.slug}&picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&caption=View my matchup on All Day Fantasy.&description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans.&redirect_uri=http://www.alldayfantasy.com/games/#{@game.slug}", :class => "uibutton large confirm"  %>
+      <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&link=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}&picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&caption=View my matchup on All Day Fantasy.&description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans.&redirect_uri=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}", :class => "uibutton large confirm"  %>
     </div>
   <% end %>
 <div class="box_score">
@@ -59,7 +59,7 @@
 
   <% if !@game.full? && @teams[0].user_id == current_user.id %>
     <div class="join_game">
-      <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&link=http://www.alldayfantasy.com/games/#{@game.slug}&picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans.&redirect_uri=http://www.alldayfantasy.com/games/#{@game.slug}", :class => "btn btn-primary btn-large"  %>
+      <%= link_to "share on facebook", "https://www.facebook.com/dialog/feed?app_id=209909909144385&link=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}&picture=http://www.bcsfamilies.com/wp-content/uploads/2012/04/basketball1.jpg&name=All Day Fantasy Basketball&caption=Make your team and accept my challenge.&description=All Day Fantasy is a daily fantasy sports league for casual and serious sports fans.&redirect_uri=http://evening-fjord-2680.herokuapp.com/games/#{@game.slug}", :class => "btn btn-primary btn-large"  %>
     </div>
   <% elsif !@game.full? && @teams[0].user_id != current_user.id %>
     <div class="join_game">
