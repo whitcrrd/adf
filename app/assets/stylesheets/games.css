@@ -8,13 +8,17 @@
 
 .box_score {
   border: 1px solid #ccc;
-  width: 900px;
+  width: 910px;
   display: inline-block;
   padding: 20px 10px;
   border-radius: 15px;
   margin-bottom: 50px;
   box-shadow: 3px 3px 5px 6px #ccc;
   background: #fff;
+/*  box-shadow: 1px 1px 3px 4px #ccc;*/
+  background-image:url('debut_dark.png');
+  background-repeat:repeat;
+
 }
 
 .left_col_lg {
@@ -114,8 +118,10 @@ tr.game_index_lineup_row {
   margin: 0 0 20px 0;
   width: 900px;
   border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px 4px #ccc;
+  background-image:url('debut_dark.png');
+  background-repeat:repeat;
 }
 .games_index_team_date {
   text-align: right;
@@ -134,22 +140,25 @@ tr.game_index_lineup_row {
   vertical-align: top;
 }
 .games_index_team_name {
-  background: #000;
-  color: #fff;
+/*  background: #000;*/
+  background: #ccc;
+  color: black;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
   width: 350px;
-  padding: 20px 0;
+  padding: 5px 0px 5px;
   display: inline-block;
   vertical-align: top;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 .games_index_vs {
+  color: #ccc;
   font-size: 30px;
   font-weight: bold;
   padding: 20px 10px;
+  margin-top: -14px;
   width: 40px;
   display: inline-block;
 }
@@ -157,7 +166,7 @@ tr.game_index_lineup_row {
 /*  background: #ddd; */
   text-align: right;
   width: 350px;
-  margin: 0 0 10px 0;
+  margin: -20px 0 10px 0;
   border: 0;
 /*  margin: -20px -4px 0 -4px;*/
   display: inline-block;
@@ -167,7 +176,7 @@ tr.game_index_lineup_row {
 /*  background: #ddd; */
   text-align: left;
   width: 350px;
-  margin: 0 0 10px 0;
+  margin: -20px 0 10px 0;
   border: 0;
 /*  margin: -20px -4px 0 -4px;*/
   display: inline-block;
@@ -191,16 +200,24 @@ div.show_fb_pic {
   vertical-align: top;
 }
 div.show_name {
-  background: #000;
-  color: #fff;
+/*  background: #000;*/
+/*  background: #ccc;*/
+  background: #eee;
+  color: black;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
   width: 348px;
   height: 30px;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
+  margin: 0px 2px 25px 2px;
   display: inline-block;
   vertical-align: top;
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         1px 1px 1px 1px #ccc;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 
 div.show_lineup {
