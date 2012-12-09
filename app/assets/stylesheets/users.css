@@ -14,6 +14,10 @@ body{
 
 }
 
+#friends-board td{
+  font-size: 10px;
+}
+
 #btn-center{
   text-align: center;
 }
@@ -24,6 +28,7 @@ body{
 
 #leaderboard {
   opacity: 0.9;
+  width: 475px;
 }
 
 #leaderboard h2 {
