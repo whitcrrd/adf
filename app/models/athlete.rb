@@ -14,9 +14,9 @@ class Athlete < ActiveRecord::Base
 
   # scope :top_pos, lambda { |input|  joins(:professional_team, :season_average).where("professional_teams.game_time is not null and athletes.position = '#{input}'").limit(10).order("season_averages.points DESC").includes(:professional_team)}
   # scope :top_pos, lambda { |input| select('athletes.*, athletes.points').joins(:professional_team, :season_average).select("athletes.*, (season_averages.points + season_averages.rebounds + season_averages.assists) as fantasy_points").where("professional_teams.game_time is not null and athletes.position = ?", input).order("athletes.points desc").limit(10)}
-  scope :top_pos, lambda { |input| select('athletes.*').joins(:professional_team, :season_average).where("professional_teams.game_time is not null and athletes.position = ?", input).order("season_averages.points desc").limit(10)}
-  
-  # (season_averages.points + season_averages.rebounds + season_averages.assists) AS 
+  scope :top_pos, lambda { |input| select('athletes.*').joins(:professional_team, :season_average).where("professional_teams.game_time is not null and athletes.position = ?", input).order("season_averages.points desc").limit(20)}
+
+  # (season_averages.points + season_averages.rebounds + season_averages.assists) AS
 
   # def top_pos(position_name)
   #   joins(:professional_team, :season_average).select("athletes.*, (season_averages.points + season_averages.rebounds + season_averages.assists) as fantasy_points").where("professional_teams.game_time IS NOT NULL").where("athletes.position" => position_name).order("fantasy_points DESC").limit(10)
@@ -51,13 +51,13 @@ class Athlete < ActiveRecord::Base
     return 'nene' if self.full_name =~ /^Nen/
     self.full_name.split(' ').join('_').gsub(/[\.\']/, '').gsub('_Jr', '').downcase
   end
-  
+
   def self.top_by_position
     athletes = []
     POSITIONS.each { |pos| athletes += top_pos(pos) }
     athletes
   end
-  
+
   def self.top_tens_by_position
     POSITIONS.collect { |pos| top_pos(pos) }
   end
@@ -65,7 +65,7 @@ class Athlete < ActiveRecord::Base
   def stats_today(date)
     @stats = self.current_stats.find_by_game_date(date)
   end
-  
+
   def points_today(date)
     stats_today(date)
     @stats.blank? ? 0 : @stats.points
@@ -80,9 +80,9 @@ class Athlete < ActiveRecord::Base
     stats_today(date)
     @stats.blank? ? 0 : @stats.assists
   end
-  
+
   def fantasy_points_today(date)
     points_today(date) + rebounds_today(date) + assists_today(date)
   end
-  
+
 end
