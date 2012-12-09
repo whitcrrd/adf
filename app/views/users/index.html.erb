@@ -23,16 +23,18 @@
       </div>
       <div class="span6" id="leaderboard-align">
         <div class="well" id="leaderboard">
-          <h2>Today's Leaderboard</h2>
-          <table class="table">
-            <% @teams.each do |team|%>
-            <tr>
-              <td><%= link_to "#{team.name}", user_path(team.user_id) %></td>
-              <%# user.teams.each do |team|%>
-              <td><b><%=team.points%></b> points</td>
-                <%#end%>
-            </tr>
-            <%end%>
+          <h2>Friend's Games</h2>
+          <table class="table" id="friends-board">
+            <% if current_user %>
+            <% @games.each do |game| %>
+              <% if (game.teams.first.user == current_user || game.teams.last.user == current_user || current_user.friends.include?(game.teams.first.user.name) || current_user.friends.include?(game.teams.last.user.name)) %>
+                <tr>
+                  <td><%= game.teams.first.user.name%> VS. <%= game.teams.last.user.name %> </td>
+                  <td><%= link_to "View Matchup", game_path(game) %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <% end %>
          </div>
         </table>
       </div>

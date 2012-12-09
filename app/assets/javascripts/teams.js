@@ -29,6 +29,8 @@ var Team = {
 
   addAthlete: function(event, data) {
     var new_position = data.player_card.split('delete_button ')[1].split("\'")[0];
+    var new_pos_short = new_position.split('_')[1];
+    alert(new_pos_short);
     if ( $('div').hasClass(new_position)) {
       old_player_card = $('div.' + new_position).closest('.player_card');
       new_player_card = $(data.player_card).hide();
@@ -37,7 +39,7 @@ var Team = {
       $('#' + old_player_card.attr("id") + "_tr").show();
     }
     else {
-      $('.athletes').append(data.player_card);
+      $('#edit-' + new_pos_short).append(data.player_card);
     }
     var position = $(this).parent().parent().attr('class').split(' ')[0];
     $(this).closest('tr').hide();

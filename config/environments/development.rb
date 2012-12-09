@@ -1,7 +1,9 @@
 Adf::Application.configure do
 
-  ENV['FACEBOOK_APP_ID'] = '209909909144385'
-  ENV['FACEBOOK_SECRET'] = '822d81260a9edd23518cf5af328c53cc'
+  ENV['FACEBOOK_APP_ID'] = '310238232420896'
+  ENV['FACEBOOK_SECRET'] = '74d958f2c00a113b9219a6fe1bc99f5b'
+  # ENV['FACEBOOK_APP_ID'] = '209909909144385'
+  # ENV['FACEBOOK_SECRET'] = '822d81260a9edd23518cf5af328c53cc'
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
