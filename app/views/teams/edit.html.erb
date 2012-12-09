@@ -4,18 +4,47 @@
   <h2>Pick Your 5 Players </h2>
   <h4><%= link_to "Your Fierce Matchup", game_path(@team.game)%></h4>
 
+    <div class="span12">
+      <div class="row">
+
+        <div class="athletes">
+        <h3><%= @team.name %></h3>
+          <% @team.athletes.each do |athlete| %>
+            <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+          <% end %>
+        </div>
+
+      </div>
+
+    <div class="row">
+        <p id="pg-text" class="position-text">
+          PG
+        </p>
+        <p id="sg-text" class="position-text">
+          SG
+        </p>
+        <p id="sf-text" class="position-text">
+          SF
+        </p>
+        <p id="pf-text" class="position-text">
+          PF
+        </p>
+        <p id="c-text" class="position-text">
+          C
+        </p>
+    </div>
+
+  </div>
+
   <div class="row">
 
-    <div class="span9  athletes">
-      <h3><%= @team.name %></h3>
-        <% @team.athletes.each do |athlete| %>
-          <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
-        <% end %>
-    </div>
-
     <div class="span3">
+      <div class="athletes-holder">
       <%= render 'athletes_list', :athletes => @athletes %><br>
       <%=link_to "Submit Your Team", games_path, :class =>'btn btn primary btn-large' %>
+      </div>
     </div>
+
   </div>
+
 </div>

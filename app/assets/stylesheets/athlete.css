@@ -1,6 +1,37 @@
+div.span12 {
+  background-color: yellow;
+}
+
+p.position-text {
+/*  float: left;*/
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p#pg-text {
+  margin: 10px 60px 10px 80px;
+}
+p#sg-text {
+  margin: 10px 60px 10px 270px;
+
+}
+p#sf-text {
+  margin: 10px 60px 10px 460px;
+
+}
+p#pf-text {
+  margin: 10px 60px 10px 650px;
+
+}
+p#c-text {
+  margin: 10px 60px 10px 840px;
+
+}
+
 div.player_card {
   margin: 3px;
-  padding: 6px;
+  padding: 5px;
   float: left;
   background: #eee;
   border: 1px solid #fff;
@@ -18,18 +49,20 @@ div.player_card {
   -webkit-border-radius: 3px;
   border-radius: 3px;
  /* float: left;*/
-  margin: 10px;
+  margin: 6px;
 /*  margin-right: 20px;
   margin-bottom: 20px;*/
 }
 
-div.athletes > div.player_card:nth-child(5) {
+/*div.athletes > div.player_card:nth-child(5) {
   margin-left: 125px;
-}
+}*/
 
 div.player_card img {
-  height: 168px;
-  width: 189px;
+/*  height: 168px;
+  width: 189px;*/
+  height: 143px;
+  width: 161px;
 }
 
 div.player_card div.name {
@@ -46,7 +79,7 @@ div.delete_button {
   float: left;
 /*  margin-top: -200px;*/
   margin-top: -20px;
-  margin-left: 170px;
+  margin-left: 145px;
 /*  z-index: -50;*/
 }
 
