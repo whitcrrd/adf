@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :teams
   has_many :games, :through => :teams
+  has_many :friends
 
 scope :yesterdays_top_points, lambda { |input| joins(:teams).where("teams.date  = ?", input).order("teams.points desc").limit(15).uniq } #SCOTT TEST THIS PLEASE
 
@@ -21,6 +22,12 @@ scope :yesterdays_top_points, lambda { |input| joins(:teams).where("teams.date  
     end
   end
 
+  def add_friends
+    self.facebook.get_connection("me","friends").each do |hash|
+      self.friends.where(:name => hash['name'], :uid => hash['id']).first_or_create
+    end
+  end
+
   def facebook
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
@@ -34,7 +41,7 @@ scope :yesterdays_top_points, lambda { |input| joins(:teams).where("teams.date  
     self.losses += 1
     self.save
   end
-  
+
   def last_five_teams
     @teams = teams.order('id desc').limit(5)
   end

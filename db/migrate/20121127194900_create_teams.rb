@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.date :date
       t.integer :user_id
-      t.integer :points
+      t.integer :points, :default => 0
 
       t.timestamps
     end
