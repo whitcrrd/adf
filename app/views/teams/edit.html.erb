@@ -9,9 +9,47 @@
 
         <div class="athletes">
         <h3><%= @team.name %></h3>
-          <% @team.athletes.each do |athlete| %>
-            <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
-          <% end %>
+
+          <div id="edit-PG" class="edit-position">
+            <% @team.athletes.each do |athlete| %>
+              <% if athlete.position == "PG" %>
+                <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="edit-SG" class="edit-position">
+            <% @team.athletes.each do |athlete| %>
+              <% if athlete.position == "SG" %>
+                <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="edit-SF" class="edit-position">
+            <% @team.athletes.each do |athlete| %>
+              <% if athlete.position == "SF" %>
+                <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="edit-PF" class="edit-position">
+            <% @team.athletes.each do |athlete| %>
+              <% if athlete.position == "PF" %>
+                <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="edit-C" class="edit-position">
+            <% @team.athletes.each do |athlete| %>
+              <% if athlete.position == "C" %>
+                <%= render :partial => 'athletes/athlete_pic', :locals => {:athlete => athlete} %>
+              <% end %>
+            <% end %>
+          </div>
+
         </div>
 
       </div>
