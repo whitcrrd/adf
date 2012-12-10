@@ -39,12 +39,14 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     # @athletes = Athlete.top_by_position
     # @ath_by_pos = Athlete.top_tens_by_position
-    @athletes = Athlete.all
+    # @athletes = Athlete.all
+    @athletes = []
     @point_guards = Athlete.top_pos("PG")
     @shooting_guards = Athlete.top_pos("SG")
     @small_forwards = Athlete.top_pos("SF")
     @power_forwards = Athlete.top_pos("PF")
     @centers = Athlete.top_pos("C")
+    @athletes << @point_guards << @shooting_guards << @small_forwards << @power_forwards << @centers
     # REVIEW: move to before filter for #edit, #new
   end
 

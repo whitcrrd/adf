@@ -100,6 +100,7 @@ class Team < ActiveRecord::Base
     super(new_name)
   end
 
+
   # helper_method :total_fantasy_points
 
 

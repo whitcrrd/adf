@@ -1,3 +1,32 @@
+tr.athletes-list td:first-child {
+ text-align: center;
+ width: 20px;
+}
+tr.edit-team-tr th {
+  text-align: center;
+}
+
+tr.edit-team-tr th.th-player-name {
+  text-align: left;
+}
+
+tr.athletes-list td {
+  padding: 5px;
+}
+
+span.athlete-team-name {
+  font-size: 12px;
+}
+
+tr.athletes-list td:first-child a {
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.player-hover {
+  background-color: #99FF99;
+}
+
 div.edit-position{
   position: absolute;
 }

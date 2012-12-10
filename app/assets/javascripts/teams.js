@@ -2,6 +2,7 @@ var Team = {
   init: function() {
     $('#position_list').on('change', Team.showByPosition);
     $('.athletes').on('ajax:success', 'a.remove-athlete', Team.removeAthlete);
+    // $('.athletes-list').on('ajax:success', 'a.add-athlete', Team.addAthlete);
     $('.athletes-list').on('ajax:success', 'a.add-athlete', Team.addAthlete);
     $('.player_table tr td').popover({
       trigger: 'hover'
@@ -24,7 +25,7 @@ var Team = {
     var position = $(this).parent().attr('class').split(' ')[1].split('-')[1];
     var play_id = $card.attr("id");
     $card.remove();
-    $('#' + play_id + '_tr').show();
+    $('#' + play_id + '_tr').fadeIn();
   },
 
   addAthlete: function(event, data) {
@@ -42,8 +43,32 @@ var Team = {
     }
     var position = $(this).parent().parent().attr('class').split(' ')[0];
     $(this).closest('tr').hide();
+    var current_position_tab = $('li.active');
+    if ($(current_position_tab).next('li').length > 0) {
+      $(current_position_tab).next().find('a').click();
+    }
+    else {
+      $('#athlete-position-tabs li:first-child').find('a').click();
+    }
+
+
+    // $(current_position_tab).removeClass()
+    // $(current_position_tab).next().addClass('active');
   },
 };
 
 $(document).ready(function() { Team.init(); });
+
+$(document).ready(function() {
+  $('tr.athletes-list').mouseover(function() {
+    $(this).addClass('player-hover');
+  });
+  $('tr.athletes-list').mouseout(function() {
+    $(this).removeClass('player-hover');
+  });
+});
+
+
+
+
 
