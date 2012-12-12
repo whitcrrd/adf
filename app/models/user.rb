@@ -23,8 +23,10 @@ scope :yesterdays_top_points, lambda { |input| joins(:teams).where("teams.date  
   end
 
   def add_friends
-    self.facebook.get_connection("me","friends").each do |hash|
-      self.friends.where(:name => hash['name'], :uid => hash['id']).first_or_create
+    if self.friends.empty?
+      self.facebook.get_connection("me","friends").each do |hash|
+        self.friends.where(:name => hash['name'], :uid => hash['id']).first_or_create
+      end
     end
   end
 

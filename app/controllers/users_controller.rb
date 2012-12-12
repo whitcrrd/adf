@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @teams = Team.order('points DESC').where("date = ?", (Date.today))
     # @games = Game.where("created_at = ?", (Date.today))
     @games = Game.order("created_at DESC")
+
     # REVIEW: use a scope
     # Team.for_today
   end

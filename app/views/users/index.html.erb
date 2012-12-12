@@ -27,7 +27,7 @@
           <table class="table" id="friends-board">
             <% if current_user %>
             <% @games.each do |game| %>
-              <% if (game.teams.first.user == current_user || game.teams.last.user == current_user || current_user.friends.include?(game.teams.first.user.name) || current_user.friends.include?(game.teams.last.user.name)) %>
+              <% if (game.teams.first.user == current_user || game.teams.last.user == current_user || current_user.friends.any? { |friend| friend.name == game.teams.first.user.name || friend.name == game.teams.last.user.name }) %>
                 <tr>
                   <td><%= game.teams.first.user.name%> VS. <%= game.teams.last.user.name %> </td>
                   <td><%= link_to "View Matchup", game_path(game) %></td>
