@@ -68,12 +68,6 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
-  $('tr.edit-team-tr th').on("click", function() {
-    $('tr.edit-team-tr th').removeClass('player-hover');
-  });
-});
-
 
 
 
