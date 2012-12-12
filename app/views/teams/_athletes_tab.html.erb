@@ -15,11 +15,11 @@
   <% else %>
   <div class="tab-pane" id="available_<%=athlete_positions[0].position.downcase%>s">
   <% end %>
-    <table class="table table-bordered">
+    <table class="table table-bordered sortable">
       <tr class="edit-team-tr">
         <th>ADD</th>
         <th class="th-player-name">PLAYER, TEAM</th>
-        <th>PTS</th>
+        <th class="player-hover points_th">PTS</th>
         <th>OREB</th>
         <th>DREB</th>
         <th>REB</th>
@@ -39,7 +39,7 @@
         <td class="assists_td"><%= athlete.season_average.assists %></td>
         <td class="steals_td"><%= athlete.season_average.steals.round(1) %></td>
         <td class="blocks_td"><%= athlete.season_average.blocks.round(1) %></td>
-        <td><%= athlete.season_average.turnovers %></td>
+        <td class="turnovers_td"><%= athlete.season_average.turnovers %></td>
       </tr>
       <% end %>
     </table>

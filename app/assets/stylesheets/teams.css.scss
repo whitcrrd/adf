@@ -4,11 +4,19 @@ tr.athletes-list td:first-child {
 }
 tr.edit-team-tr th {
   text-align: center;
+  width: 8%;
 }
 
 tr.edit-team-tr th.th-player-name {
   text-align: left;
+  width: 25%;
 }
+
+tr.edit-team-tr th {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 
 tr.athletes-list td {
   padding: 5px;
@@ -24,6 +32,10 @@ tr.athletes-list td:first-child a {
 }
 
 .player-hover {
+  background-color: #99FF99;
+}
+
+.sorttable_sorted, .sorttable_sorted_reverse {
   background-color: #99FF99;
 }
 
