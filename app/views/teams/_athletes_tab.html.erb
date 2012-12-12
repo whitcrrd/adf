@@ -1,14 +1,20 @@
 <ul class="nav nav-pills nav-inverse" id="athlete-position-tabs">
-  <li class="active"><a href="#available_point_guards" data-toggle="tab">point guards</a></li>
-  <li><a href="#available_shooting_guards" data-toggle="tab">shooting guards</a></li>
-  <li><a href="#available_small_forwards" data-toggle="tab">small forwards</a></li>
-  <li><a href="#available_power_forwards" data-toggle="tab">power forwards</a></li>
-  <li><a href="#available_centers" data-toggle="tab">centers</a></li>
+  <li class="active"><a href="#available_pgs" data-toggle="tab">point guards</a></li>
+  <li><a href="#available_sgs" data-toggle="tab">shooting guards</a></li>
+  <li><a href="#available_sfs" data-toggle="tab">small forwards</a></li>
+  <li><a href="#available_pfs" data-toggle="tab">power forwards</a></li>
+  <li><a href="#available_cs" data-toggle="tab">centers</a></li>
 </ul>
 
-
 <div class="tab-content" id="blah_blah">
-  <div class="tab-pane active" id="available_point_guards">
+
+  <% @athletes.each do |athlete_positions| %>
+
+  <% if athlete_positions[0].position == 'PG' %>
+  <div class="tab-pane active" id="available_<%=athlete_positions[0].position.downcase%>s">
+  <% else %>
+  <div class="tab-pane" id="available_<%=athlete_positions[0].position.downcase%>s">
+  <% end %>
     <table class="table table-bordered">
       <tr class="edit-team-tr">
         <th>ADD</th>
@@ -22,7 +28,7 @@
         <th>BLK</th>
         <th>TO</th>
       </tr>
-      <% @point_guards.each do |athlete| %>
+    <% athlete_positions.each do |athlete| %>
       <tr id="athlete_<%=athlete.id%>_tr" class="position_<%=athlete.position%> athletes-list">
         <td><%= link_to '', team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete btn-mini icon-plus-sign'%></td>
         <td class="name_td"><%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete'%>, <span class="athlete-team-name"><%= athlete.professional_team.short_name.upcase%></span></td>
@@ -39,126 +45,6 @@
     </table>
   </div>
 
+  <% end %>
 
-
-  <div class="tab-pane" id="available_shooting_guards">
-    <table class="table table-bordered">
-      <tr class="edit-team-tr">
-        <th>ADD</th>
-        <th class="th-player-name">PLAYER, TEAM</th>
-        <th>PTS</th>
-        <th>OREB</th>
-        <th>DREB</th>
-        <th>REB</th>
-        <th>AST</th>
-        <th>STL</th>
-        <th>BLK</th>
-        <th>TO</th>
-      </tr>
-      <% @shooting_guards.each do |athlete| %>
-      <tr id="athlete_<%=athlete.id%>_tr" class="position_<%=athlete.position%> athletes-list">
-        <td><%= link_to '', team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete btn-mini icon-plus-sign'%></td>
-        <td class="name_td"><%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete'%>, <span class="athlete-team-name"><%= athlete.professional_team.short_name.upcase%></span></td>
-        <td class="points_td"><%= athlete.season_average.points %></td>
-        <td><%= athlete.season_average.offensive_rebounds %></td>
-        <td><%= athlete.season_average.defensive_rebounds %></td>
-        <td class="rebounds_td"><%= athlete.season_average.rebounds%></td>
-        <td class="assists_td"><%= athlete.season_average.assists %></td>
-        <td class="steals_td"><%= athlete.season_average.steals.round(1) %></td>
-        <td class="blocks_td"><%= athlete.season_average.blocks.round(1) %></td>
-        <td><%= athlete.season_average.turnovers %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class="tab-pane" id="available_small_forwards">
-    <table class="table table-bordered">
-      <tr class="edit-team-tr">
-        <th>ADD</th>
-        <th class="th-player-name">PLAYER, TEAM</th>
-        <th>PTS</th>
-        <th>OREB</th>
-        <th>DREB</th>
-        <th>REB</th>
-        <th>AST</th>
-        <th>STL</th>
-        <th>BLK</th>
-        <th>TO</th>
-      </tr>
-      <% @small_forwards.each do |athlete| %>
-      <tr id="athlete_<%=athlete.id%>_tr" class="position_<%=athlete.position%> athletes-list">
-        <td><%= link_to '', team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete btn-mini icon-plus-sign'%></td>
-        <td class="name_td"><%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete'%>, <span class="athlete-team-name"><%= athlete.professional_team.short_name.upcase%></span></td>
-        <td class="points_td"><%= athlete.season_average.points %></td>
-        <td><%= athlete.season_average.offensive_rebounds %></td>
-        <td><%= athlete.season_average.defensive_rebounds %></td>
-        <td class="rebounds_td"><%= athlete.season_average.rebounds%></td>
-        <td class="assists_td"><%= athlete.season_average.assists %></td>
-        <td class="steals_td"><%= athlete.season_average.steals.round(1) %></td>
-        <td class="blocks_td"><%= athlete.season_average.blocks.round(1) %></td>
-        <td><%= athlete.season_average.turnovers %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class="tab-pane" id="available_power_forwards">
-    <table class="table table-bordered">
-      <tr class="edit-team-tr">
-        <th>ADD</th>
-        <th class="th-player-name">PLAYER, TEAM</th>
-        <th>PTS</th>
-        <th>OREB</th>
-        <th>DREB</th>
-        <th>REB</th>
-        <th>AST</th>
-        <th>STL</th>
-        <th>BLK</th>
-        <th>TO</th>
-      </tr>
-      <% @power_forwards.each do |athlete| %>
-      <tr id="athlete_<%=athlete.id%>_tr" class="position_<%=athlete.position%> athletes-list">
-        <td><%= link_to '', team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete btn-mini icon-plus-sign'%></td>
-        <td class="name_td"><%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete'%>, <span class="athlete-team-name"><%= athlete.professional_team.short_name.upcase%></span></td>
-        <td class="points_td"><%= athlete.season_average.points %></td>
-        <td><%= athlete.season_average.offensive_rebounds %></td>
-        <td><%= athlete.season_average.defensive_rebounds %></td>
-        <td class="rebounds_td"><%= athlete.season_average.rebounds%></td>
-        <td class="assists_td"><%= athlete.season_average.assists %></td>
-        <td class="steals_td"><%= athlete.season_average.steals.round(1) %></td>
-        <td class="blocks_td"><%= athlete.season_average.blocks.round(1) %></td>
-        <td><%= athlete.season_average.turnovers %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class="tab-pane" id="available_centers">
-    <table class="table table-bordered">
-      <tr class="edit-team-tr">
-        <th>ADD</th>
-        <th class="th-player-name">PLAYER, TEAM</th>
-        <th>PTS</th>
-        <th>OREB</th>
-        <th>DREB</th>
-        <th>REB</th>
-        <th>AST</th>
-        <th>STL</th>
-        <th>BLK</th>
-        <th>TO</th>
-      </tr>
-      <% @centers.each do |athlete| %>
-      <tr id="athlete_<%=athlete.id%>_tr" class="position_<%=athlete.position%> athletes-list">
-        <td><%= link_to '', team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete btn-mini icon-plus-sign'%></td>
-        <td class="name_td"><%= link_to athlete.full_name, team_path(@team, :athlete_id => athlete.id), :remote => true, :method => :put, :class => 'add-athlete'%>, <span class="athlete-team-name"><%= athlete.professional_team.short_name.upcase%></span></td>
-        <td class="points_td"><%= athlete.season_average.points %></td>
-        <td><%= athlete.season_average.offensive_rebounds %></td>
-        <td><%= athlete.season_average.defensive_rebounds %></td>
-        <td class="rebounds_td"><%= athlete.season_average.rebounds%></td>
-        <td class="assists_td"><%= athlete.season_average.assists %></td>
-        <td class="steals_td"><%= athlete.season_average.steals.round(1) %></td>
-        <td class="blocks_td"><%= athlete.season_average.blocks.round(1) %></td>
-        <td><%= athlete.season_average.turnovers %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
 </div>
